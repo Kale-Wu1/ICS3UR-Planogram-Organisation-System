@@ -9,6 +9,7 @@ public class MainMenu extends JFrame{
         setBounds(0, 0, 600, 600);
         JPanel mainFrame = new JPanel();
         setVisible(true);
+        System.out.println("Testing!");
 
 
 
