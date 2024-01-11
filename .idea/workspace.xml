@@ -52,14 +52,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kalew/IdeaProjects/ICS3UR - Summative Project&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Jan11thUpdates",
+    "last_opened_file_path": "C:/Users/kalew/IdeaProjects/ICS3UR - Summative Project"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -77,11 +77,28 @@
       <option name="project" value="LOCAL" />
       <updated>1704812789397</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed Version Edit Issues. Previous Version of this file was deleted on accident. Now restored progress. Lost minor code adjustments.">
+      <option name="closed" value="true" />
+      <created>1704985544911</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1704985544911</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fixed Version Edit Issues. Previous Version of this file was deleted on accident. Now restored progress. Lost minor code adjustments.">
+      <option name="closed" value="true" />
+      <created>1704985581786</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704985581786</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test2" />
+    <MESSAGE value="Fixed Version Edit Issues. Previous Version of this file was deleted on accident. Now restored progress. Lost minor code adjustments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Version Edit Issues. Previous Version of this file was deleted on accident. Now restored progress. Lost minor code adjustments." />
   </component>
 </project>

@@ -133,7 +133,6 @@ public class MainMenu extends JFrame{
         utilityButtonsPanel = new JPanel(new GridBagLayout());
 
         JButton instructionsButton = new JButton("How to Use");
-        instructionsButton.setPreferredSize(new Dimension(100, 50));
         instructionsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -143,8 +142,6 @@ public class MainMenu extends JFrame{
         });
 
         JButton newLayoutButton = new JButton("New Layout");
-        newLayoutButton.setPreferredSize(new Dimension(100, 50));
-
         newLayoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -153,21 +150,28 @@ public class MainMenu extends JFrame{
             }
         });
 
-        gbc = createGbc(0, 0);
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        utilityButtonsPanel.add(instructionsButton, gbc);
+        utilityButtonsPanel.add(instructionsButton, createGbc(1, 0));
+        utilityButtonsPanel.add(newLayoutButton, createGbc(2, 0));
 
-        gbc = createGbc(1, 0);
-        utilityButtonsPanel.add(newLayoutButton, gbc);
+        //Add Exit Button
+        exitButtonPanel = new JPanel(new GridBagLayout());
 
+        JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
 
+            }
+        });
+        exitButtonPanel.add(exitButton, createGbc(0, 0));
 
         //Add Components to mainMenuLayout
         mainMenu.add(headerPanel, createGbc(0, 0));
         mainMenu.add(availableLayoutsPanel, createGbc(0, 1));
         mainMenu.add(searchDirectoryPanel, createGbc(0, 3));
         mainMenu.add(utilityButtonsPanel, createGbc(0, 4));
+        mainMenu.add(exitButtonPanel, createGbc(0, 5));
 
         //Add Components to parentPanel
         parentPanel.add(mainMenu, "mainMenu");
