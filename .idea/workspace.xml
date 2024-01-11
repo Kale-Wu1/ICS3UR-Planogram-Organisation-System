@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Finished Main Menu GUI w/o functionality.">
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Restructured code for separate classes per panel">
+      <change afterPath="$PROJECT_DIR$/src/GBCLayoutOrganiser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InstructionsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -102,13 +107,22 @@
       <option name="project" value="LOCAL" />
       <updated>1704985915049</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Restructured code for separate classes per panel">
+      <option name="closed" value="true" />
+      <created>1704986566780</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704986566780</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test2" />
     <MESSAGE value="Fixed Version Edit Issues. Previous Version of this file was deleted on accident. Now restored progress. Lost minor code adjustments." />
     <MESSAGE value="Finished Main Menu GUI w/o functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished Main Menu GUI w/o functionality." />
+    <MESSAGE value="Restructured code for separate classes per panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured code for separate classes per panel" />
   </component>
 </project>

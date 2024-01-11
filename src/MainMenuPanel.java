@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class MainMenuPanel extends JPanel{
+public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
+    //Parent Window
+    private final Main parentWindow;
+
     //Organisation Panels
     JPanel headerPanel;
     JPanel availableLayoutsPanel;
@@ -20,16 +23,9 @@ public class MainMenuPanel extends JPanel{
 
     DefaultListModel<String> testList;
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainMenuPanel();
-            }
-        });
-    }
 
-    public MainMenuPanel() {
+    public MainMenuPanel(Main parentWindow_) {
+        parentWindow = parentWindow_;
         setLayout(new GridBagLayout());
 
         //Add Header
@@ -107,7 +103,7 @@ public class MainMenuPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: Add Instruction Functionality
-
+                parentWindow.setCard(1);
             }
         });
 
@@ -155,23 +151,6 @@ public class MainMenuPanel extends JPanel{
     //Method searchFile searches a directory for valid layout files and returns all files that match using linear search
     private File[] searchFiles(String directory) {
         return null;
-    }
-
-    //Code from Hovercraft Full Of Eels from https://stackoverflow.com/questions/9851688/how-to-align-left-or-right-inside-gridbaglayout-cell
-    private GridBagConstraints createGbc(int x, int y) {
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = x;
-        gbc.gridy = y;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-
-        gbc.anchor = (x == 0) ? GridBagConstraints.WEST : GridBagConstraints.EAST;
-        gbc.fill = (x == 0) ? GridBagConstraints.BOTH : GridBagConstraints.HORIZONTAL;
-
-        gbc.insets = (x == 0) ? new Insets(5, 0, 5, 5) : new Insets(5, 5, 5, 0);
-        gbc.weightx = (x == 0) ? 0.1 : 1.0;
-        gbc.weighty = 1.0;
-        return gbc;
     }
 
     //Method takes directory and currentLayoutsArr and returns a File[] with updated values

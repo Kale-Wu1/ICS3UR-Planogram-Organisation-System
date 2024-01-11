@@ -7,18 +7,14 @@ public class Main extends JFrame{
     JPanel parentPanel;
 
     //Organisation Panels
-    JPanel headerPanel;
-    JPanel availableLayoutsPanel;
-    JPanel searchDirectoryPanel;
-    JPanel utilityButtonsPanel;
-    JPanel exitButtonPanel;
+    JPanel mainMenuPanel;
+    JPanel instructionsPanel;
 
     //Variables
     File[] fileArr = new File[0];
     String searchDirectory = null;
 
     DefaultListModel<String> testList;
-
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -43,15 +39,34 @@ public class Main extends JFrame{
         //Initialise parentPanel
         parentPanel = new JPanel(new CardLayout());
 
+        //Initialise Component Panels
+        mainMenuPanel = new MainMenuPanel(this);
+        instructionsPanel = new InstructionsPanel(this);
+
+
         //Add Components to parentPanel
-        parentPanel.add(new MainMenuPanel(), "mainMenu");
-        //parentPanel.add(instructions, "instructions");
+        parentPanel.add(mainMenuPanel, "mainMenu");
+        parentPanel.add(instructionsPanel, "instructions");
         //parentPanel.add(layoutCreator, "layoutCreator");
 
         //Add Parent Panel to Window
         add(parentPanel);
 
         setVisible(true);
+    }
+
+    public void setCard(int card) {
+        switch(card) {
+            case 0:
+                instructionsPanel.setVisible(false);
+                mainMenuPanel.setVisible(true);
+                break;
+            case 1:
+
+                mainMenuPanel.setVisible(false);
+                instructionsPanel.setVisible(true);
+                break;
+        }
     }
 
 }
