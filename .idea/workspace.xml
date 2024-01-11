@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Test2">
-      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenu.java" afterDir="false" />
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Finished Main Menu GUI w/o functionality.">
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,12 +94,21 @@
       <option name="project" value="LOCAL" />
       <updated>1704985581786</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Finished Main Menu GUI w/o functionality.">
+      <option name="closed" value="true" />
+      <created>1704985915049</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1704985915049</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test2" />
     <MESSAGE value="Fixed Version Edit Issues. Previous Version of this file was deleted on accident. Now restored progress. Lost minor code adjustments." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Version Edit Issues. Previous Version of this file was deleted on accident. Now restored progress. Lost minor code adjustments." />
+    <MESSAGE value="Finished Main Menu GUI w/o functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Main Menu GUI w/o functionality." />
   </component>
 </project>

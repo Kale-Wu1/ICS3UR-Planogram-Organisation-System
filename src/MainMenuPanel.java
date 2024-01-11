@@ -4,19 +4,9 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.io.File;
 
-public class MainMenu extends JFrame{
-    //Parent Panel
-    JPanel parentPanel;
-
-    //CardLayout Panels
-    JPanel mainMenu;
-    JPanel instructions;
-    JPanel layoutCreator;
-
+public class MainMenuPanel extends JPanel{
     //Organisation Panels
     JPanel headerPanel;
     JPanel availableLayoutsPanel;
@@ -30,37 +20,17 @@ public class MainMenu extends JFrame{
 
     DefaultListModel<String> testList;
 
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainMenu();
+                new MainMenuPanel();
             }
         });
     }
 
-    public MainMenu() {
-        //Initialise Window
-        final int FRAME_WIDTH = 600;
-        final int FRAME_LENGTH = 750;
-        final int INDENT_GAP = 50;
-
-        //Set values for window
-        setBounds(0, 0, FRAME_WIDTH, FRAME_LENGTH);
-        setTitle("Planogram v.1");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-
-
-        //Initialise GridBagConstraints Variable
-        GridBagConstraints gbc;
-
-        //Initialise parentPanel
-        parentPanel = new JPanel(new CardLayout());
-
-        //Define mainMenu JPanel
-        mainMenu = new JPanel(new GridBagLayout());
+    public MainMenuPanel() {
+        setLayout(new GridBagLayout());
 
         //Add Header
         //TODO: Center text in title
@@ -161,27 +131,16 @@ public class MainMenu extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
-
             }
         });
         exitButtonPanel.add(exitButton, createGbc(0, 0));
 
         //Add Components to mainMenuLayout
-        mainMenu.add(headerPanel, createGbc(0, 0));
-        mainMenu.add(availableLayoutsPanel, createGbc(0, 1));
-        mainMenu.add(searchDirectoryPanel, createGbc(0, 3));
-        mainMenu.add(utilityButtonsPanel, createGbc(0, 4));
-        mainMenu.add(exitButtonPanel, createGbc(0, 5));
-
-        //Add Components to parentPanel
-        parentPanel.add(mainMenu, "mainMenu");
-        //parentPanel.add(instructions, "instructions");
-        //parentPanel.add(layoutCreator, "layoutCreator");
-
-        //Add Parent Panel to Window
-        add(parentPanel);
-
-        setVisible(true);
+        add(headerPanel, createGbc(0, 0));
+        add(availableLayoutsPanel, createGbc(0, 1));
+        add(searchDirectoryPanel, createGbc(0, 3));
+        add(utilityButtonsPanel, createGbc(0, 4));
+        add(exitButtonPanel, createGbc(0, 5));
     }
 
     //Method takes no parameters and returns updated JList with updated FileArr
