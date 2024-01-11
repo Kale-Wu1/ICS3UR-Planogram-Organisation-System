@@ -21,8 +21,7 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     File[] fileArr = new File[0];
     String searchDirectory = null;
 
-    DefaultListModel<String> testList;
-
+    DefaultListModel<String> layoutTitlesList;
 
     public MainMenuPanel(Main parentWindow_) {
         parentWindow = parentWindow_;
@@ -45,14 +44,10 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         //Available Layout Search Results List w/ Scroll
         //JList<String> availLayouts = getUpdatedSearchResults();
 
-        /*Testing List*/
-        DefaultListModel<String> testList = new DefaultListModel<>();
-        for(int i = 0; i < 20; i++) {
-            testList.addElement(Integer.toString(i));
-        }
 
-        JList<String> availLayouts = new JList<>(testList);
-        JScrollPane availLayoutOptionsScroll = new JScrollPane(availLayouts);
+        layoutTitlesList = new DefaultListModel<>(); //Create DefaultListModel for layout titles
+        JList<String> availLayouts = new JList<>(layoutTitlesList); //Create JList to contain layoutTitlesList
+        JScrollPane availLayoutOptionsScroll = new JScrollPane(availLayouts); //Create JScrollPane to contain availLayouts
         availLayouts.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -75,19 +70,13 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         JLabel searchLabel = new JLabel("Search Directory:");
 
         JTextField searchTextField = new JTextField(30);
-        searchTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchDirectory = searchTextField.getText();
-            }
-        });
 
         JButton searchButton = new JButton("Search");
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: Add Search Functionality
-
+                updateAvailResults(searchTextField.getText(), fileArr, layoutTitlesList); //Update fileArr
             }
         });
 
@@ -111,8 +100,7 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         newLayoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Add New Layout Functionality
-
+                parentWindow.setCard(2);
             }
         });
 
@@ -139,14 +127,6 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         add(exitButtonPanel, createGbc(0, 5));
     }
 
-    //Method takes no parameters and returns updated JList with updated FileArr
-    private JList<String> getUpdatedSearchResults() {
-        DefaultListModel<String> newList = new DefaultListModel<>();
-        for(String title:getTitles(fileArr)) {
-            newList.addElement(title);
-        }
-        return new JList<>(newList);
-    }
 
     //Method searchFile searches a directory for valid layout files and returns all files that match using linear search
     private File[] searchFiles(String directory) {
@@ -154,7 +134,7 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     }
 
     //Method takes directory and currentLayoutsArr and returns a File[] with updated values
-    private File[] updateAvailResults(String directory, File[] currentLayoutsArr) {
+    private void updateAvailResults(String directory, File[] currentLayoutsArr, DefaultListModel<String> syncedTitleList) {
         File[] searchResults = searchFiles(directory);
         File[] newArr = new File[searchResults.length + currentLayoutsArr.length];
 
@@ -166,7 +146,9 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
             newArr[i] = searchResults[i-currentLayoutsArr.length];
         }
 
-        return newArr;
+        for(String title:getTitles(newArr)) {
+            syncedTitleList.addElement(title);
+        }
     }
 
     //Method takes File[] fileArr and returns a String[] with titles only

@@ -9,6 +9,7 @@ public class Main extends JFrame{
     //Organisation Panels
     JPanel mainMenuPanel;
     JPanel instructionsPanel;
+    JPanel layoutCreatorPanel;
 
     //Variables
     File[] fileArr = new File[0];
@@ -42,12 +43,13 @@ public class Main extends JFrame{
         //Initialise Component Panels
         mainMenuPanel = new MainMenuPanel(this);
         instructionsPanel = new InstructionsPanel(this);
+        layoutCreatorPanel = new LayoutCreatorPanel(this);
 
 
         //Add Components to parentPanel
         parentPanel.add(mainMenuPanel, "mainMenu");
         parentPanel.add(instructionsPanel, "instructions");
-        //parentPanel.add(layoutCreator, "layoutCreator");
+        parentPanel.add(layoutCreatorPanel, "layoutCreator");
 
         //Add Parent Panel to Window
         add(parentPanel);
@@ -58,13 +60,19 @@ public class Main extends JFrame{
     public void setCard(int card) {
         switch(card) {
             case 0:
-                instructionsPanel.setVisible(false);
                 mainMenuPanel.setVisible(true);
+                instructionsPanel.setVisible(false);
+                layoutCreatorPanel.setVisible(false);
                 break;
             case 1:
-
                 mainMenuPanel.setVisible(false);
                 instructionsPanel.setVisible(true);
+                layoutCreatorPanel.setVisible(false);
+                break;
+            case 2:
+                mainMenuPanel.setVisible(false);
+                instructionsPanel.setVisible(false);
+                layoutCreatorPanel.setVisible(true);
                 break;
         }
     }

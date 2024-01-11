@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Restructured code for separate classes per panel">
-      <change afterPath="$PROJECT_DIR$/src/GBCLayoutOrganiser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InstructionsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" />
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Confirm Changes and Push">
+      <change afterPath="$PROJECT_DIR$/src/LayoutCreatorPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainMenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
     </list>
@@ -20,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -115,7 +112,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704986566780</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finished InstructionPanel interaction">
+      <option name="closed" value="true" />
+      <created>1704992289126</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704992289126</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Confirm Changes and Push">
+      <option name="closed" value="true" />
+      <created>1704992355905</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704992355905</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -123,6 +136,23 @@
     <MESSAGE value="Fixed Version Edit Issues. Previous Version of this file was deleted on accident. Now restored progress. Lost minor code adjustments." />
     <MESSAGE value="Finished Main Menu GUI w/o functionality." />
     <MESSAGE value="Restructured code for separate classes per panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructured code for separate classes per panel" />
+    <MESSAGE value="Finished InstructionPanel interaction" />
+    <MESSAGE value="Confirm Changes and Push" />
+    <option name="LAST_COMMIT_MESSAGE" value="Confirm Changes and Push" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/MainMenuPanel.java</url>
+          <line>137</line>
+          <properties class="MainMenuPanel" method="updateAvailResults">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
