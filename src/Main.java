@@ -68,5 +68,4 @@ public class Main extends JFrame{
                 break;
         }
     }
-
 }
