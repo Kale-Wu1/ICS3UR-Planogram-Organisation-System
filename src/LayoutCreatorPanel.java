@@ -77,7 +77,7 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser{
 
         //Notes Text Field
         JPanel notesPanel = new JPanel(new GridBagLayout());
-        JLabel notesText = new JLabel("Storage Directory: ");
+        JLabel notesText = new JLabel("Notes: ");
 
         JTextArea notesTextArea = new JTextArea(3, 30);
 
@@ -106,6 +106,10 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser{
         utilityButtonsPanel.add(returnButton, createGbc(1, 0));
         utilityButtonsPanel.add(createNewLayoutButton, createGbc(2, 0));
 
+        //Input Error Notes
+        JPanel errorMessagePanel = new JPanel(new GridBagLayout());
+        JLabel errorMessage = new JLabel();
+
         //Add all panels to LayoutCreatorPanel
         add(headerPanel, createGbc(0, 0));
         add(basicInfoForms, createGbc(0, 1));
@@ -114,5 +118,4 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser{
         add(notesPanel, createGbc(0, 4));
         add(utilityButtonsPanel, createGbc(0, 5));
     }
-
 }
