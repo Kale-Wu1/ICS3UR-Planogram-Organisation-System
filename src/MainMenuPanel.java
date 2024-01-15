@@ -53,7 +53,11 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
             public void valueChanged(ListSelectionEvent e) {
                 if(!e.getValueIsAdjusting()) {
                     //TODO: Open Layout When one is selected
+                    /*
+                    Open LayoutViewer with a file directory as a parameter
+                     */
                     System.out.println(availLayouts.getSelectedIndex());
+                    parentWindow_.dispose();
                 }
             }
         });
@@ -91,7 +95,6 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         instructionsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Add Instruction Functionality
                 parentWindow.setCard(1);
             }
         });
