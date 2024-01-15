@@ -13,7 +13,7 @@ public interface GBCLayoutOrganiser {
         gbc.anchor = (x == 0) ? GridBagConstraints.WEST : GridBagConstraints.EAST;
         gbc.fill = (x == 0) ? GridBagConstraints.BOTH : GridBagConstraints.HORIZONTAL;
 
-        gbc.insets = (x == 0) ? new Insets(5, 0, 5, 5) : new Insets(5, 5, 5, 0);
+        gbc.insets = (x == 0) ? new Insets(5, 5, 5, 5) : new Insets(5, 5, 5, 5);
         gbc.weightx = (x == 0) ? 0.1 : 1.0;
         gbc.weighty = 1.0;
         return gbc;

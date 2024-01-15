@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Minor Updates">
-      <change afterPath="$PROJECT_DIR$/src/LayoutViewerWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shelf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LayoutNotesViewerPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LayoutSearchToolsPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LayoutViewerPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PanelTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GBCLayoutOrganiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GBCLayoutOrganiser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LayoutViewerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +65,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Jan14thUpdates",
+    "git-widget-placeholder": "Jan15thUpdates",
     "last_opened_file_path": "C:/Users/kalew/Downloads/Video Games"
   }
 }]]></component>
