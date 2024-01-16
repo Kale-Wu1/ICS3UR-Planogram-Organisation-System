@@ -10,14 +10,18 @@ public class LayoutNotesViewerPanel extends JPanel implements GBCLayoutOrganiser
         //Set layout manager for this panel
         setLayout(new GridBagLayout());
 
+        //Add header
+        JPanel headerPanel = new JPanel();
+        headerPanel.setLayout(new GridBagLayout());
+        JLabel mainMenuHeader = new JLabel("Creator Notes");
+        headerPanel.add(mainMenuHeader);
+
         //Add Notes
         final String NOTES_TEXT = "[This is filler text that will be created by the user!]";
 
         JPanel notesPanel = new JPanel(new GridBagLayout());
-        JLabel notesHeader = new JLabel("Notes");
         JLabel notesLabel = new JLabel(NOTES_TEXT);
 
-        notesPanel.add(notesHeader, createGbc(0, 0));
         notesPanel.add(notesLabel, createGbc(0, 1));
 
         //Add Return Button
@@ -33,8 +37,9 @@ public class LayoutNotesViewerPanel extends JPanel implements GBCLayoutOrganiser
         });
         returnButtonPanel.add(returnButton, createGbc(0, 0));
 
-        add(notesPanel, createGbc(0, 0));
-        add(returnButtonPanel, createGbc(0, 1));
+        add(headerPanel, createGbc(0, 0));
+        add(notesPanel, createGbc(0, 1));
+        add(returnButtonPanel, createGbc(0, 2));
     }
     
 }

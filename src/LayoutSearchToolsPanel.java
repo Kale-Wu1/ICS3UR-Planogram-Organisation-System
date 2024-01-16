@@ -73,7 +73,7 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
         notesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Got to Notes
+                parentWindow.setCard(1);
             }
         });
 

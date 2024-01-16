@@ -8,6 +8,8 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser{
     private final Main parentWindow;
     private String selectedUnit;
 
+    //
+
     public LayoutCreatorPanel(Main parentWindow_) {
         parentWindow = parentWindow_;
         setLayout(new GridBagLayout());
@@ -99,7 +101,7 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser{
         createNewLayoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Add New Layout Creation Functionality
+                createNewLayout();
             }
         });
 
@@ -117,5 +119,24 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser{
         add(newLayoutDirectoryPanel, createGbc(0, 3));
         add(notesPanel, createGbc(0, 4));
         add(utilityButtonsPanel, createGbc(0, 5));
+    }
+
+    private void createNewLayout() {
+        String[] layoutInfo = new String[] {}
+        //TODO: Add New Layout Creation Functionality
+                /*
+                Get all user info
+                Ensure is valid
+                Write to file
+                 */
+
+        //Get all values from user
+
+
+    }
+
+    private boolean isValidLayout(String[] layoutInfo) {
+        //Layout info as appears in form.
+        return false;
     }
 }
