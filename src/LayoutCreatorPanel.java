@@ -122,7 +122,7 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser{
     }
 
     private void createNewLayout() {
-        String[] layoutInfo = new String[] {}
+        String[] layoutInfo = new String[10]; //TODO: FIX THIS!!!!!!
         //TODO: Add New Layout Creation Functionality
                 /*
                 Get all user info
