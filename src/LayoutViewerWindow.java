@@ -2,32 +2,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LayoutViewerWindow extends JFrame {
-    //Parent Panel
-    private JPanel parentPanel;
 
     //Define Main Divisions
-    private JPanel parentViewPanel;
-    private JPanel parentToolMenuPanel;
+    private final JPanel parentViewPanel;
+    private final JPanel parentToolMenuPanel;
 
     //Menu Panels
-    private JPanel searchMenu;
-    private JPanel notesMenu;
-    private JPanel editorMenu;
+    private final JPanel searchMenu;
+    private final JPanel notesMenu;
+    private final JPanel editorMenu;
 
 
     //Current Layout Object
-    Layout currentLayout;
+    Layout layout;
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LayoutViewerWindow();
-            }
-        });
-    }
-
-    public LayoutViewerWindow() {
+    public LayoutViewerWindow(Layout layout_) {
+        layout = layout_;
 
         //currentLayout = currentLayout_;
         final int FRAME_WIDTH = 1000;
@@ -40,7 +30,8 @@ public class LayoutViewerWindow extends JFrame {
         //setResizable(false);
 
         //Add Base Panels
-        parentPanel = new JPanel(null);
+        //Parent Panel
+        JPanel parentPanel = new JPanel(null);
         GridBagConstraints gbc;
 
         parentViewPanel = new JPanel(null);
@@ -93,5 +84,9 @@ public class LayoutViewerWindow extends JFrame {
                 editorMenu.setVisible(true);
                 break;
         }
+    }
+
+    private void drawShelves(Shelf[] shelfArr) {
+
     }
 }
