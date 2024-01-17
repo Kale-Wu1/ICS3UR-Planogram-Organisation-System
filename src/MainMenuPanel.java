@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     //Parent Window
@@ -22,6 +23,9 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     String searchDirectory = null;
 
     DefaultListModel<String> layoutTitlesList;
+
+    //Global Fields
+    JLabel searchResultsLabel;
 
     public MainMenuPanel(Main parentWindow_) {
         parentWindow = parentWindow_;
@@ -84,9 +88,13 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
             }
         });
 
+        searchResultsLabel = new JLabel();
+
         searchDirectoryPanel.add(searchLabel, createGbc(0, 0));
         searchDirectoryPanel.add(searchTextField, createGbc(1, 0));
         searchDirectoryPanel.add(searchButton, createGbc(2, 0));
+        searchDirectoryPanel.add(searchResultsLabel, createGbc(0, 1));
+
 
         //Add Utility Buttons
         utilityButtonsPanel = new JPanel(new GridBagLayout());
@@ -133,18 +141,34 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
 
     //Method searchFile searches a directory for valid layout files and returns all files that match using linear search
     private File[] searchFiles(String directory) {
+        //Mike Samuel - https://stackoverflow.com/questions/4917326/how-to-iterate-over-the-files-of-a-certain-directory-in-java
+        File dir = new File(directory);
+        File[] fileList = dir.listFiles();
+        ArrayList<File> tempFileList = new ArrayList<>();
+        if(fileList != null) {
+            for(File file : fileList) {
+                if(file.getAbsoluteFile().toString().substring(file.getAbsoluteFile().toString().length()-11).equals("Layout.txt")) {
+                    tempFileList.add(file.getAbsoluteFile());
+                }
+            }
+        } else {
+
+        }
+
         return null;
     }
 
     //Method takes directory and currentLayoutsArr and returns a File[] with updated values
-    private void updateAvailResults(String directory, File[] currentLayoutsArr, DefaultListModel<String> syncedTitleList) {
+    private File[] updateAvailResults(String directory, File[] currentLayoutsArr, DefaultListModel<String> syncedTitleList) {
         File[] searchResults = searchFiles(directory);
         File[] newArr = new File[searchResults.length + currentLayoutsArr.length];
 
+        //Add currentLayoutsArr items to newArr
         for(int i = 0; i < currentLayoutsArr.length; i++) {
             newArr[i] = currentLayoutsArr[i];
         }
 
+        //Add searchResults to newArr;
         for(int i = currentLayoutsArr.length; i < newArr.length; i++) {
             newArr[i] = searchResults[i-currentLayoutsArr.length];
         }
@@ -152,6 +176,8 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         for(String title:getTitles(newArr)) {
             syncedTitleList.addElement(title);
         }
+
+        return newArr;
     }
 
     //Method takes File[] fileArr and returns a String[] with titles only

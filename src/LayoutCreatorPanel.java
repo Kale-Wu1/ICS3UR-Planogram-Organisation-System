@@ -192,7 +192,7 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
                 }
             }
 
-            userPath = userPath + "\\\\" + layoutNameTextField.getText() + ".txt";
+            userPath = userPath + "\\\\" + layoutNameTextField.getText() + "Layout.txt";
 
 
 

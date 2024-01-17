@@ -7,10 +7,23 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
     LayoutViewerWindow parentWindow;
     Shelf selectedShelf;
     JPanel editorTools;
+    //Menu Cards
+    JPanel noShelfSelectedMenu;
+    JPanel shelfSelectedMenu;
+
+
+    //Information Fields
+    JTextField shelfNameTextField;
+    JTextField xPosTextField;
+    JTextField yPosTextField;
+    JTextField widthTextField;
+    JTextField lengthTextField;
 
     public LayoutEditorToolsPanel(LayoutViewerWindow parentWindow_, Shelf selectedShelf_) {
         parentWindow = parentWindow_;
         selectedShelf = selectedShelf_;
+
+        setLayout(new GridBagLayout());
 
 
         //Header
@@ -21,20 +34,13 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
 
         //Create CardLayout for selecting shelves
         editorTools = new JPanel(new CardLayout());
-        editorTools.add(noShelfSelectedMenu(), "noShelfSelectedMenu");
+        noShelfSelectedMenu = noShelfSelectedMenu();
+        shelfSelectedMenu = shelfSelectedMenu();
+        editorTools.add(noShelfSelectedMenu, "noShelfSelectedMenu");
+        editorTools.add(shelfSelectedMenu, "shelfSelectedMenu");
 
-
-
-
-
-
-
-        //Shelf Name
-        //Pos and Size
-        //Rotation Buttons
-        //Utility Buttons
-        //Return to Layout
-
+        add(headerPanel, createGbc(0, 0));
+        add(editorTools, createGbc(0, 1));
 
     }
 
@@ -47,6 +53,7 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: Create New Shelf
+                setCard(1);
             }
         });
 
@@ -65,21 +72,34 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
         return noShelfSelectedMenu;
     }
 
+    private void setCard(int card) {
+        switch(card) {
+            case 0:
+                noShelfSelectedMenu.setVisible(true);
+                shelfSelectedMenu.setVisible(false);
+                break;
+            case 1:
+                noShelfSelectedMenu.setVisible(false);
+                shelfSelectedMenu.setVisible(true);
+                break;
+        }
+    }
+
     private JPanel shelfSelectedMenu() {
         JPanel shelfSelectedMenu = new JPanel(new GridBagLayout());
 
         JPanel shelfNamePanel = new JPanel(new GridBagLayout());
         JLabel shelfNameLabel = new JLabel("Name:");
-        JTextField shelfNameTextField = new JTextField();
+        shelfNameTextField = new JTextField();
         shelfNamePanel.add(shelfNameLabel, createGbc(0, 0));
         shelfNamePanel.add(shelfNameTextField, createGbc(1, 0));
 
         JPanel positionPanel = new JPanel(new GridBagLayout());
         JLabel positionLabel = new JLabel("Position:");
         JLabel xPosLabel = new JLabel("X:");
-        JTextField xPosTextField = new JTextField();
+        xPosTextField = new JTextField();
         JLabel yPosLabel = new JLabel("Y:");
-        JTextField yPosTextField = new JTextField();
+        yPosTextField = new JTextField();
         positionPanel.add(positionLabel, createGbc(0, 0));
         positionPanel.add(xPosLabel, createGbc(1, 0));
         positionPanel.add(xPosTextField, createGbc(2, 0));
@@ -88,10 +108,10 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
 
         JPanel sizePanel = new JPanel(new GridBagLayout());
         JLabel sizeLabel = new JLabel("Size:");
-        JLabel widthLabel = new JLabel("Length:");
-        JTextField widthTextField = new JTextField();
+        JLabel widthLabel = new JLabel("Width:");
+        widthTextField = new JTextField();
         JLabel lengthLabel = new JLabel("Length:");
-        JTextField lengthTextField = new JTextField();
+        lengthTextField = new JTextField();
         sizePanel.add(sizeLabel, createGbc(0, 0));
         sizePanel.add(widthLabel, createGbc(1, 0));
         sizePanel.add(widthTextField, createGbc(2, 0));
@@ -106,12 +126,49 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
 
         //TODO: Finish Adding these and draw shelves
         JPanel utilButtonsPanel = new JPanel(new GridBagLayout());
-        JButton rotationButton = new JButton("\uD83D\uDD04");
-        JButton rotationButton = new JButton("\uD83D\uDD04");
+        JButton saveCurrentShelfButton = new JButton("Save Current Shelf");
+        saveCurrentShelfButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO: Save Current Shelf
+            }
+        });
+
+        JButton newShelfButton = new JButton("Create New Shelf");
+        newShelfButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO: Add Shelf Creations
+
+            }
+        });
+        utilButtonsPanel.add(saveCurrentShelfButton, createGbc(1, 0));
+        utilButtonsPanel.add(newShelfButton, createGbc(2, 0));
+
+
         JPanel returnPanel = new JPanel(new GridBagLayout());
+        JButton returnButton = new JButton("Return to Search");
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                parentWindow.setCard(0);
+            }
+        });
+        returnPanel.add(returnButton);
+
+        shelfSelectedMenu.add(shelfNamePanel, createGbc(0, 0));
+        shelfSelectedMenu.add(positionPanel, createGbc(0, 1));
+        shelfSelectedMenu.add(sizePanel, createGbc(0, 2));
+        shelfSelectedMenu.add(rotationPanel, createGbc(0, 3));
+        shelfSelectedMenu.add(utilButtonsPanel, createGbc(0, 4));
+        shelfSelectedMenu.add(returnPanel, createGbc(0, 5));
+
+        return shelfSelectedMenu;
     }
+
     private void createShelf() {
 
     }
+
 
 }

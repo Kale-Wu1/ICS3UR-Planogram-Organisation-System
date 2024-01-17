@@ -17,7 +17,7 @@ public class LayoutNotesViewerPanel extends JPanel implements GBCLayoutOrganiser
         headerPanel.add(mainMenuHeader);
 
         //Add Notes
-        final String NOTES_TEXT = "[This is filler text that will be created by the user!]";
+        final String NOTES_TEXT = parentWindow.getStorageLayout().getNotes();
 
         JPanel notesPanel = new JPanel(new GridBagLayout());
         JLabel notesLabel = new JLabel(NOTES_TEXT);

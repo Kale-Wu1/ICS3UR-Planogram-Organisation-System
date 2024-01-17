@@ -16,6 +16,15 @@ public class LayoutViewerWindow extends JFrame {
     //Current Layout Object
     Layout layout;
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new LayoutViewerWindow(new Layout("C:\\Users\\kalew\\Downloads\\testLayouts\\LayoutTest3.txt"));
+            }
+        });
+    }
+
     public LayoutViewerWindow(Layout layout_) {
         layout = layout_;
 
@@ -64,6 +73,10 @@ public class LayoutViewerWindow extends JFrame {
 
     public JPanel getParentViewPanel() {
         return parentViewPanel;
+    }
+
+    public Layout getStorageLayout() {
+        return layout;
     }
 
     public void setCard(int card) {

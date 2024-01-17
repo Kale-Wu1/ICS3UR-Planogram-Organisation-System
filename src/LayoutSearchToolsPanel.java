@@ -82,6 +82,7 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: Go to Editor
+                parentWindow.setCard(2);
             }
         });
 

@@ -6,6 +6,7 @@ public class Shelf {
     private int length;
     private int width;
     private String[] itemArr;
+    private int rotationAngle;
 
     public Shelf(String name_, int xPos_, int yPos_, int length_, int width_, String[] itemArr_) {
         name = name_;
@@ -14,6 +15,7 @@ public class Shelf {
         length = length_;
         width = width_;
         itemArr = itemArr_;
+        rotationAngle = 0;
     }
 
     //Accessor Methods
