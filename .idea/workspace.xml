@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Started Work on file Integration. FLayout Shelf Editor remains to be completed">
-      <change afterPath="$PROJECT_DIR$/src/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutCreatorPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutCreatorPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutViewerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerWindow.java" afterDir="false" />
-    </list>
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Finished File Creation and Reading w/o shelves." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -163,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705373147777</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Finished File Creation and Reading w/o shelves.">
+      <option name="closed" value="true" />
+      <created>1705462636027</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705462636027</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,7 +206,8 @@
     <MESSAGE value="Minor Updates" />
     <MESSAGE value="Started on Layout Viewer. Much more todo.&#10;&#10;Finish editor gui. Create file creator." />
     <MESSAGE value="Started Work on file Integration. FLayout Shelf Editor remains to be completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started Work on file Integration. FLayout Shelf Editor remains to be completed" />
+    <MESSAGE value="Finished File Creation and Reading w/o shelves." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished File Creation and Reading w/o shelves." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
