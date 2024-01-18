@@ -96,7 +96,8 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                new Main();
+                parentWindow.dispose();
             }
         });
         returnButtonPanel.add(exitButton, createGbc(1, 0));

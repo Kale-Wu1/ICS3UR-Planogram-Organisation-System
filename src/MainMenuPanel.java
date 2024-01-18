@@ -4,8 +4,12 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     //Parent Window
@@ -60,7 +64,7 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
                     /*
                     Open LayoutViewer with a file directory as a parameter
                      */
-                    System.out.println(availLayouts.getSelectedIndex());
+                    new LayoutViewerWindow(new Layout(fileArr[availLayouts.getSelectedIndex()].getAbsolutePath()));
                     parentWindow_.dispose();
                 }
             }
@@ -84,7 +88,8 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: Add Search Functionality
-                updateAvailResults(searchTextField.getText(), fileArr, layoutTitlesList); //Update fileArr
+                fileArr = updateAvailResults(searchTextField.getText(), fileArr, layoutTitlesList);
+                System.out.println("Button Pressed");
             }
         });
 
@@ -146,22 +151,32 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         File[] fileList = dir.listFiles();
         ArrayList<File> tempFileList = new ArrayList<>();
         if(fileList != null) {
-            for(File file : fileList) {
-                if(file.getAbsoluteFile().toString().substring(file.getAbsoluteFile().toString().length()-11).equals("Layout.txt")) {
-                    tempFileList.add(file.getAbsoluteFile());
+            for(File element : fileList) {
+                if(element.getAbsoluteFile().toString().substring(element.getAbsoluteFile().toString().length()-10).equals("Layout.txt")) {
+                    tempFileList.add(element.getAbsoluteFile());
                 }
             }
+
+            File[] searchResults = new File[tempFileList.size()];
+            searchResults = tempFileList.toArray(searchResults);
+            System.out.println("Found files: " + Arrays.toString(searchResults));
+            return searchResults;
         } else {
-
+            searchResultsLabel.setText("No valid results were found.");
         }
-
         return null;
     }
 
     //Method takes directory and currentLayoutsArr and returns a File[] with updated values
     private File[] updateAvailResults(String directory, File[] currentLayoutsArr, DefaultListModel<String> syncedTitleList) {
         File[] searchResults = searchFiles(directory);
-        File[] newArr = new File[searchResults.length + currentLayoutsArr.length];
+        File[] newArr;
+        if(searchResults == null) {
+            newArr = new File[currentLayoutsArr.length];
+        } else {
+            newArr = new File[currentLayoutsArr.length + searchResults.length];
+        }
+
 
         //Add currentLayoutsArr items to newArr
         for(int i = 0; i < currentLayoutsArr.length; i++) {
@@ -183,9 +198,17 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     //Method takes File[] fileArr and returns a String[] with titles only
     private String[] getTitles(File[] fileArr) {
         //TODO: Get first line from File object
-
-        return null;
+        String[] titles = new String[fileArr.length];
+        for(int i = 0; i < titles.length; i++) {
+            try {
+                FileReader fr = new FileReader(fileArr[i]);
+                BufferedReader br = new BufferedReader(fr);
+                titles[i] = br.readLine();
+            } catch (IOException e) {
+                System.err.println("Error reading file.");
+            }
+        }
+        System.out.println("Titles: " +  Arrays.toString(titles));
+        return titles;
     }
-
-
 }

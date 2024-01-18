@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Finished File Creation and Reading w/o shelves.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Progress on integration and layout editing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutCreatorPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutCreatorPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutNotesViewerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutNotesViewerPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LayoutSearchToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutSearchToolsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LayoutViewerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LayoutViewerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainMenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shelf.java" afterDir="false" />
@@ -65,8 +63,13 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Jan17thUpdates",
     "last_opened_file_path": "C:/Users/kalew/Downloads/Video Games"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
+    ]
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -174,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705462636027</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Progress on integration and layout editing">
+      <option name="closed" value="true" />
+      <created>1705513078080</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705513078080</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -217,21 +228,7 @@
     <MESSAGE value="Started on Layout Viewer. Much more todo.&#10;&#10;Finish editor gui. Create file creator." />
     <MESSAGE value="Started Work on file Integration. FLayout Shelf Editor remains to be completed" />
     <MESSAGE value="Finished File Creation and Reading w/o shelves." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished File Creation and Reading w/o shelves." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/MainMenuPanel.java</url>
-          <line>161</line>
-          <properties class="MainMenuPanel" method="updateAvailResults">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Progress on integration and layout editing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Progress on integration and layout editing" />
   </component>
 </project>

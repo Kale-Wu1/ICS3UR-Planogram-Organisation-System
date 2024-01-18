@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Shelf {
     //Instance Variables
     private String name;
@@ -16,6 +18,7 @@ public class Shelf {
         width = width_;
         itemArr = itemArr_;
         rotationAngle = 0;
+
     }
 
     //Accessor Methods
@@ -23,11 +26,11 @@ public class Shelf {
         return name;
     }
 
-    public int getxPos() {
+    public int getXPos() {
         return xPos;
     }
 
-    public int getyPos() {
+    public int getYPos() {
         return yPos;
     }
 
@@ -39,10 +42,46 @@ public class Shelf {
         return width;
     }
 
+    public int getRotationAngle() {
+        return rotationAngle;
+    }
+
     public String[] getItemArr() {
         return itemArr;
     }
 
-    //Instance Methods
 
+    //Mutator Methods
+    public void setName(String name_) {
+        name = name_;
+    }
+
+    public void setXPos(int xPos_) {
+        xPos = xPos_;
+    }
+
+    public void setYPos(int yPos_) {
+        yPos = yPos_;
+    }
+
+    public void setLength(int length_) {
+        length = length_;
+    }
+
+    public void setWidth(int width_) {
+        width = width_;
+    }
+
+    public void setRotationAngle(int rotationAngle_) {
+        rotationAngle = rotationAngle_;
+    }
+
+    public void setItemArr(String[] itemArr_) {
+        itemArr = itemArr_;
+    }
+
+    //Instance Methods
+    public boolean isClicked(int xClicked, int yClicked) {
+        return (xClicked > xPos && xClicked < xPos+width) && (yClicked > yPos && yClicked < yPos+length);
+    }
 }

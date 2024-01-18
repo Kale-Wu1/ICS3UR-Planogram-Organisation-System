@@ -8,14 +8,16 @@ public class LayoutViewerWindow extends JFrame {
     private final JPanel parentToolMenuPanel;
 
     //Menu Panels
-    private final JPanel searchMenu;
-    private final JPanel notesMenu;
-    private final JPanel editorMenu;
+    private final LayoutSearchToolsPanel searchMenu;
+    private final LayoutNotesViewerPanel notesMenu;
+    private final LayoutEditorToolsPanel editorMenu;
 
 
     //Current Layout Object
     Layout layout;
 
+    //Current Menu
+    private int currentCard;
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -27,6 +29,7 @@ public class LayoutViewerWindow extends JFrame {
 
     public LayoutViewerWindow(Layout layout_) {
         layout = layout_;
+        currentCard = 0;
 
         //currentLayout = currentLayout_;
         final int FRAME_WIDTH = 1000;
@@ -62,7 +65,6 @@ public class LayoutViewerWindow extends JFrame {
 
         add(parentPanel);
 
-
         setVisible(true);
 
     }
@@ -79,7 +81,16 @@ public class LayoutViewerWindow extends JFrame {
         return layout;
     }
 
+    public int getCurrentCard() {
+        return currentCard;
+    }
+
+    public LayoutEditorToolsPanel getEditorMenu() {
+        return editorMenu;
+    }
+
     public void setCard(int card) {
+        currentCard = card;
         switch(card) {
             case 0:
                 searchMenu.setVisible(true);
@@ -97,9 +108,5 @@ public class LayoutViewerWindow extends JFrame {
                 editorMenu.setVisible(true);
                 break;
         }
-    }
-
-    private void drawShelves(Shelf[] shelfArr) {
-
     }
 }
