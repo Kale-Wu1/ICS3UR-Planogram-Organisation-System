@@ -230,15 +230,7 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
     }
 
     private void createNewShelf() {
-        boolean dataIsValid = true;
-        String[] shelfInfo = new String[7];
-        shelfInfo[0] = shelfNameTextField.getText();
-        shelfInfo[1] = xPosTextField.getText();
-        shelfInfo[2] = yPosTextField.getText();
-        shelfInfo[3] = widthTextField.getText();
-        shelfInfo[4] = lengthTextField.getText();
-        shelfInfo[5] = Integer.toString(currentShelfRotation);
-        //shelfInfo[6] = notesTextArea.getText().replaceAll("\n","\\\\n");
+        //TODO: Communicate with layout object to create shelf.
 
 
     }

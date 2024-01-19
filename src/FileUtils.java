@@ -1,14 +1,13 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public interface FileUtils {
-    default boolean isValidPath(String path) {
+    default boolean isValidPath(String directory) {
         try {
-            Paths.get(path);
+            Paths.get(directory);
         } catch (InvalidPathException | NullPointerException ex) {
             return false;
         }
@@ -39,5 +38,46 @@ public interface FileUtils {
             System.err.println("An unexpected error regarding file reading occurred...");
         }
         return new String[]{};
+    }
+
+    default void addLine(String directory, String line) {
+        //Get list of content from file
+        String[] oldFileInfo = readFromFile(directory);
+        String[] fileInfo = new String[oldFileInfo.length + 1];
+
+        System.arraycopy(oldFileInfo, 0, fileInfo, 0, oldFileInfo.length);
+
+        fileInfo[fileInfo.length-1] = line;
+
+        try {
+            FileWriter fw = new FileWriter(directory);
+            PrintWriter pw = new PrintWriter(fw);
+
+            for(String element : fileInfo) {
+                pw.println();
+            }
+
+            pw.close();
+        } catch (IOException e) {
+            System.err.println("There was a problem writing to file.");
+        }
+    }
+
+    default void setLine(String directory, int lineIndex, String newString) {
+        String[] fileInfo = readFromFile(directory);
+        fileInfo[lineIndex] = newString;
+
+        try {
+            FileWriter fw = new FileWriter(directory);
+            PrintWriter pw = new PrintWriter(fw);
+
+            for(String element : fileInfo) {
+                pw.println();
+            }
+
+            pw.close();
+        } catch (IOException e) {
+            System.err.println("There was a problem writing to file.");
+        }
     }
 }

@@ -68,4 +68,8 @@ public class Layout implements FileUtils{
     public String[] getLayoutInfo() {
         return layoutInfo;
     }
+
+    public void setShelfArr(Shelf[] shelfArr_) {
+        shelfArr = shelfArr_;
+    }
 }

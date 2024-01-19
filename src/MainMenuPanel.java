@@ -89,7 +89,6 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
             public void actionPerformed(ActionEvent e) {
                 //TODO: Add Search Functionality
                 fileArr = updateAvailResults(searchTextField.getText(), fileArr, layoutTitlesList);
-                System.out.println("Button Pressed");
             }
         });
 
@@ -152,7 +151,7 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         ArrayList<File> tempFileList = new ArrayList<>();
         if(fileList != null) {
             for(File element : fileList) {
-                if(element.getAbsoluteFile().toString().substring(element.getAbsoluteFile().toString().length()-10).equals("Layout.txt")) {
+                if(element.getAbsoluteFile().toString().endsWith("Layout.txt")) {
                     tempFileList.add(element.getAbsoluteFile());
                 }
             }
@@ -174,7 +173,22 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         if(searchResults == null) {
             newArr = new File[currentLayoutsArr.length];
         } else {
-            newArr = new File[currentLayoutsArr.length + searchResults.length];
+            //Find length of newArr
+            int newArrLength = currentLayoutsArr.length;
+            for (File searchResult : searchResults) {
+                boolean isUnique = true;
+                for(File currentLayoutFile : currentLayoutsArr) {
+                    if(currentLayoutFile.equals(searchResult)) {
+                        isUnique = false;
+                        break;
+                    }
+                }
+                if(isUnique) {
+                    newArrLength++;
+                }
+            }
+
+            newArr = new File[newArrLength];
         }
 
 
@@ -183,11 +197,22 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
             newArr[i] = currentLayoutsArr[i];
         }
 
+
         //Add searchResults to newArr;
         for(int i = currentLayoutsArr.length; i < newArr.length; i++) {
-            newArr[i] = searchResults[i-currentLayoutsArr.length];
+            boolean fileExists = false;
+            for(File element : currentLayoutsArr) {
+                if(element.equals(searchResults[i-currentLayoutsArr.length])) {
+                    fileExists = true;
+                    break;
+                }
+            }
+            if(!fileExists) {
+                newArr[i] = searchResults[i-currentLayoutsArr.length];
+            }
         }
 
+        syncedTitleList.clear();
         for(String title:getTitles(newArr)) {
             syncedTitleList.addElement(title);
         }

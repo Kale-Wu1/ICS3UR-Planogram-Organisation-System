@@ -11,6 +11,7 @@ public class LayoutViewerWindow extends JFrame {
     private final LayoutSearchToolsPanel searchMenu;
     private final LayoutNotesViewerPanel notesMenu;
     private final LayoutEditorToolsPanel editorMenu;
+    private final LayoutItemViewerToolsPanel itemViewMenu;
 
 
     //Current Layout Object
@@ -54,11 +55,13 @@ public class LayoutViewerWindow extends JFrame {
         searchMenu = new LayoutSearchToolsPanel(this);
         notesMenu = new LayoutNotesViewerPanel(this);
         editorMenu = new LayoutEditorToolsPanel(this, null);
+        itemViewMenu = new LayoutItemViewerToolsPanel(this, null);
 
         parentToolMenuPanel = new JPanel(new CardLayout());
         parentToolMenuPanel.add(searchMenu, "searchMenu");
         parentToolMenuPanel.add(notesMenu, "notesMenu");
         parentToolMenuPanel.add(editorMenu, "editorMenu");
+        parentToolMenuPanel.add(itemViewMenu, "itemViewMenu");
 
         parentToolMenuPanel.setBounds((int) (FRAME_WIDTH/10*6.9), 0, (int) (FRAME_WIDTH/10*2.9), FRAME_LENGTH-20);
         parentPanel.add(parentToolMenuPanel);
@@ -89,6 +92,10 @@ public class LayoutViewerWindow extends JFrame {
         return editorMenu;
     }
 
+    public LayoutItemViewerToolsPanel getItemViewMenu() {
+        return itemViewMenu;
+    }
+
     public void setCard(int card) {
         currentCard = card;
         switch(card) {
@@ -96,16 +103,25 @@ public class LayoutViewerWindow extends JFrame {
                 searchMenu.setVisible(true);
                 notesMenu.setVisible(false);
                 editorMenu.setVisible(false);
+                itemViewMenu.setVisible(false);
                 break;
             case 1:
                 searchMenu.setVisible(false);
                 notesMenu.setVisible(true);
                 editorMenu.setVisible(false);
+                itemViewMenu.setVisible(false);
                 break;
             case 2:
                 searchMenu.setVisible(false);
                 notesMenu.setVisible(false);
                 editorMenu.setVisible(true);
+                itemViewMenu.setVisible(false);
+                break;
+            case 4:
+                searchMenu.setVisible(false);
+                notesMenu.setVisible(false);
+                editorMenu.setVisible(false);
+                itemViewMenu.setVisible(true);
                 break;
         }
     }

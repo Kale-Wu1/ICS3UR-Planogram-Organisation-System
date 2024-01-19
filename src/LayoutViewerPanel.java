@@ -20,12 +20,11 @@ public class LayoutViewerPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selectedShelf = checkShelfClicked(e.getX(), e.getY());
-                System.out.println("Clicked! Here at: " + e.getX() + ", " + e.getY());
-                if(selectedShelf != null) {
-                    System.out.println("A Shelf was clicked too!");
-                }
+
                 if(parentWindow.getCurrentCard() == 2) {
                     parentWindow.getEditorMenu().setSelectedShelf(selectedShelf);
+                } if(parentWindow.getCurrentCard() == 0) {
+                    parentWindow.getItemViewMenu().setSelectedShelf(selectedShelf);
                 }
             }
 

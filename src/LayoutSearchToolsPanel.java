@@ -42,7 +42,7 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
 
         //Add Available Layouts Results
         JPanel searchResultsPanel = new JPanel(new GridBagLayout()); //Create New Panel
-        JLabel availLayoutMessage = new JLabel("Current Layouts: "); //Add Subheading
+        JLabel availLayoutMessage = new JLabel("Search Results: "); //Add Subheading
         searchResultsPanel.add(availLayoutMessage, createGbc(1, 0));
 
         DefaultListModel<String> searchResultsInfoList = new DefaultListModel<>(); //Create DefaultListModel for layout titles
@@ -96,6 +96,7 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 new Main();
                 parentWindow.dispose();
             }
@@ -108,8 +109,11 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
         add(searchResultsPanel, createGbc(0, 2));
         add(utilityButtonsPanel, createGbc(0, 3));
         add(returnButtonPanel, createGbc(0, 4));
-        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA I AM VERY UPSET RIGHT NOW!!!!!!!AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
+    }
+
+    private void saveAll() {
+        //TODO: SAVE ALL USING OBJECTS
     }
 
 }
