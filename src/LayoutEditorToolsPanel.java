@@ -2,8 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
 
-public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser{
+public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser, FileUtils {
     LayoutViewerWindow parentWindow;
     Shelf selectedShelf;
     JPanel editorTools;
@@ -18,6 +23,10 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
     JTextField yPosTextField;
     JTextField widthTextField;
     JTextField lengthTextField;
+
+    //Current Shelf Rotation
+    private int currentShelfRotation;
+
 
     public LayoutEditorToolsPanel(LayoutViewerWindow parentWindow_, Shelf selectedShelf_) {
         parentWindow = parentWindow_;
@@ -129,10 +138,18 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
         rotationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(selectedShelf.getRotationAngle() == 0) {
-                    selectedShelf.setRotationAngle(1);
+                if(currentShelfRotation == 0) {
+                    currentShelfRotation = 1;
                 } else {
+                    currentShelfRotation = 0;
+                }
+
+                if(selectedShelf != null) {
+                    if(selectedShelf.getRotationAngle() == 0) {
+                    selectedShelf.setRotationAngle(1);
+                    } else {
                     selectedShelf.setRotationAngle(0);
+                    }
                 }
             }
         });
@@ -146,6 +163,15 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: Save Current Shelf
+                if(selectedShelf == null) {
+                    createNewShelf();
+                } else {
+                    /*
+                    Get current shelf
+                    Find line in file
+                    Rewrite file with line changed
+                     */
+                }
             }
         });
 
@@ -154,7 +180,7 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
             @Override
             public void actionPerformed(ActionEvent e) {
                 //TODO: Add Shelf Creations
-
+                selectedShelf = null;
             }
         });
         utilButtonsPanel.add(saveCurrentShelfButton, createGbc(1, 0));
@@ -180,6 +206,43 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
 
         return shelfSelectedMenu;
     }
+
+    private void addLineToLayout(String line) {
+        String[] currentLayoutContent = parentWindow.getStorageLayout().getLayoutInfo();
+        String[] layoutContent = new String[currentLayoutContent.length+1];
+        for(int i = 0; i < currentLayoutContent.length; i++) {
+            layoutContent[i] = currentLayoutContent[i];
+        }
+        layoutContent[layoutContent.length-1] = line;
+
+        try {
+            FileWriter fw = new FileWriter(parentWindow.getStorageLayout().getDirectory());
+            PrintWriter pw = new PrintWriter(fw);
+
+            for(String element : layoutContent) {
+                pw.println();
+            }
+
+            pw.close();
+        } catch (IOException e) {
+            System.err.println("There was a problem writing to file.");
+        }
+    }
+
+    private void createNewShelf() {
+        boolean dataIsValid = true;
+        String[] shelfInfo = new String[7];
+        shelfInfo[0] = shelfNameTextField.getText();
+        shelfInfo[1] = xPosTextField.getText();
+        shelfInfo[2] = yPosTextField.getText();
+        shelfInfo[3] = widthTextField.getText();
+        shelfInfo[4] = lengthTextField.getText();
+        shelfInfo[5] = Integer.toString(currentShelfRotation);
+        //shelfInfo[6] = notesTextArea.getText().replaceAll("\n","\\\\n");
+
+
+    }
+
 
     public void setSelectedShelf(Shelf selectedShelf_) {
         selectedShelf = selectedShelf_;

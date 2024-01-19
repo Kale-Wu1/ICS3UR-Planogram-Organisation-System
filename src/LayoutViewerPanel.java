@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
+import java.util.Arrays;
 
 public class LayoutViewerPanel extends JPanel {
     LayoutViewerWindow parentWindow;
@@ -17,6 +20,10 @@ public class LayoutViewerPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selectedShelf = checkShelfClicked(e.getX(), e.getY());
+                System.out.println("Clicked! Here at: " + e.getX() + ", " + e.getY());
+                if(selectedShelf != null) {
+                    System.out.println("A Shelf was clicked too!");
+                }
                 if(parentWindow.getCurrentCard() == 2) {
                     parentWindow.getEditorMenu().setSelectedShelf(selectedShelf);
                 }
@@ -35,7 +42,16 @@ public class LayoutViewerPanel extends JPanel {
             public void mouseExited(MouseEvent e) {}
         });
 
+        repaint();
+
     }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        drawShelves(g);
+    }
+
     private void drawShelves(Graphics g) {
         for(Shelf element : shelfArr) {
             g.drawRect(element.getXPos(), element.getYPos(), element.getWidth(), element.getLength());

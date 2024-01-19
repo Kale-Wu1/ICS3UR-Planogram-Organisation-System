@@ -37,7 +37,7 @@ public class LayoutViewerWindow extends JFrame {
 
         //Set values for window
         setBounds(0, 0, FRAME_WIDTH, FRAME_LENGTH);
-        setTitle("[Layout Name] - Planogram v.1"); //TODO: Add Layout Name to Title
+        setTitle(layout.getName() + " - Planogram v.1");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //setResizable(false);
 
@@ -46,7 +46,7 @@ public class LayoutViewerWindow extends JFrame {
         JPanel parentPanel = new JPanel(null);
         GridBagConstraints gbc;
 
-        parentViewPanel = new JPanel(null);
+        parentViewPanel = new LayoutViewerPanel(this, layout.getShelfArr());
         parentViewPanel.setBounds(0, 0, FRAME_WIDTH/10*7, FRAME_LENGTH);
         parentPanel.add(parentViewPanel);
 

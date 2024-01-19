@@ -10,14 +10,14 @@ public class Shelf {
     private String[] itemArr;
     private int rotationAngle;
 
-    public Shelf(String name_, int xPos_, int yPos_, int length_, int width_, String[] itemArr_) {
+    public Shelf(String name_, int xPos_, int yPos_, int length_, int width_, int rotationAngle_, String[] itemArr_) {
         name = name_;
         xPos = xPos_;
         yPos = yPos_;
         length = length_;
         width = width_;
         itemArr = itemArr_;
-        rotationAngle = 0;
+        rotationAngle = rotationAngle_;
 
     }
 

@@ -2,7 +2,7 @@ import java.io.*;
 import java.nio.Buffer;
 import java.util.ArrayList;
 
-public class Layout {
+public class Layout implements FileUtils{
     //File Management
     private String directory;
     private String[] layoutInfo;
@@ -18,6 +18,7 @@ public class Layout {
     private Shelf[] shelfArr;
 
 
+
     public Layout(String directory_) {
         layoutInfo = readFromFile(directory_);
         name = layoutInfo[0];
@@ -28,33 +29,15 @@ public class Layout {
         directory = directory_;
         notes = layoutInfo[6];
 
-    }
-
-    //Method read information from given directory and returns a String[] with the information line by line. Returns empty String[] if reading fails
-    private String[] readFromFile(String directory) {
-        String[] layoutInfo;
-        try {
-            //Read information from file
-            FileReader fr = new FileReader(directory);
-            BufferedReader br = new BufferedReader(fr);
-
-            ArrayList<String> tempContentList = new ArrayList<>();
-            String currentLine = br.readLine();
-            while(currentLine != null) {
-                tempContentList.add(currentLine);
-                currentLine = br.readLine();
+        //Add all other lines to shelfArr as Shelf objects
+        shelfArr = new Shelf[layoutInfo.length-7];
+        if(layoutInfo.length > 7) {
+            String[] shelfInfo;
+            for(int i = 7; i < layoutInfo.length; i++) {
+                shelfInfo = layoutInfo[i].split(" ");
+                shelfArr[i-7] = new Shelf(shelfInfo[0], Integer.parseInt(shelfInfo[1]), Integer.parseInt(shelfInfo[2]),Integer.parseInt(shelfInfo[3]), Integer.parseInt(shelfInfo[4]),Integer.parseInt(shelfInfo[5]), shelfInfo[6].split(","));
             }
-
-            layoutInfo = new String[tempContentList.toArray().length];
-            for(int i = 0; i < layoutInfo.length; i++) {
-                layoutInfo[i] = tempContentList.get(i);
-            }
-            return layoutInfo;
-
-        } catch (IOException e) {
-            System.err.println("An unexpected error regarding file reading occurred...");
         }
-        return new String[]{};
     }
 
     //Accessor Methods
@@ -81,5 +64,8 @@ public class Layout {
     }
     public Shelf[] getShelfArr() {
         return shelfArr;
+    }
+    public String[] getLayoutInfo() {
+        return layoutInfo;
     }
 }

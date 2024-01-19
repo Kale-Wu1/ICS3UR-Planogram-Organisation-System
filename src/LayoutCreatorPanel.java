@@ -28,7 +28,6 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
         setLayout(new GridBagLayout());
 
         //Add Header
-        //TODO: Center text in title
         JPanel headerPanel = new JPanel(new GridBagLayout());;
         JLabel mainMenuHeader = new JLabel("Create New Layout");
 
@@ -138,14 +137,14 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
 
     private void createNewLayout() {
         boolean dataIsValid = true;
-        String[] layoutInfo = new String[7]; //TODO: FIX THIS!!!!!!
+        String[] layoutInfo = new String[7];
         layoutInfo[0] = layoutNameTextField.getText();
         layoutInfo[1] = authorNameTextField.getText();
         layoutInfo[2] = unitOptions[unitOptionsComboBox.getSelectedIndex()];
         layoutInfo[3] = roomWidthTextField.getText();
         layoutInfo[4] = roomLengthTextField.getText();
         layoutInfo[5] = newLayoutDirectoryTextField.getText();
-        layoutInfo[6] = notesTextArea.getText();
+        layoutInfo[6] = notesTextArea.getText().replaceAll("\n","\\\\n");
 
         //Errorchecking
         for(String element:layoutInfo) {
@@ -223,8 +222,6 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
                 errorMessage.setText("Problem creating file. Please ensure that the directory provided is correct.");
             }
         }
-
-
     }
 
     private boolean isValidLayout(String[] layoutInfo) {

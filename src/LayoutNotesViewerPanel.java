@@ -17,12 +17,12 @@ public class LayoutNotesViewerPanel extends JPanel implements GBCLayoutOrganiser
         headerPanel.add(mainMenuHeader);
 
         //Add Notes
-        final String NOTES_TEXT = parentWindow.getStorageLayout().getNotes();
+        final String NOTES_TEXT = parentWindow.getStorageLayout().getNotes().replaceAll("\\\\n", "\n");
 
         JPanel notesPanel = new JPanel(new GridBagLayout());
-        JLabel notesLabel = new JLabel(NOTES_TEXT);
+        JTextArea notesTextArea = new JTextArea(NOTES_TEXT);
 
-        notesPanel.add(notesLabel, createGbc(0, 1));
+        notesPanel.add(notesTextArea, createGbc(0, 1));
 
         //Add Return Button
         JPanel returnButtonPanel = new JPanel(new GridBagLayout());
