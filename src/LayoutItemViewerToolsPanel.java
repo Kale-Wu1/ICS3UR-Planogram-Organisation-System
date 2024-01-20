@@ -2,12 +2,15 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrganiser, FileUtils {
-    DefaultListModel<JTextField> itemList;
     Shelf selectedShelf;
     LayoutViewerWindow parentWindow;
+    JPanel itemPanel;
 
     public LayoutItemViewerToolsPanel(LayoutViewerWindow parentWindow_, Shelf selectedShelf_) {
         selectedShelf = selectedShelf_;
@@ -15,8 +18,10 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
 
         //Hide this window if created with null selected shelf
         if(selectedShelf == null) {
-            parentWindow.setCard(0);
+            selectedShelf = new Shelf();
         }
+
+        setLayout(new GridBagLayout());
 
         //Header
         JPanel headerPanel = new JPanel(new GridBagLayout());
@@ -25,66 +30,94 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
 
         //Item List
         JPanel itemListPanel = new JPanel(new GridBagLayout());
-        itemList = new DefaultListModel<>(); //Create DefaultListModel for layout titles
-        JList<JTextField> itemJList = new JList<>(itemList); //Create JList to contain layoutTitlesList
-        itemJList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                //Refresh itemList if list is clicked off.
-                if(!e.getValueIsAdjusting()) {
-                    if(itemJList.getSelectedIndex() == -1) {
-                        refreshItemList(itemList);
-                    }
-                }
-            }
-        });
-        JScrollPane itemJListScroll = new JScrollPane(itemJList); //Create JScrollPane to contain availLayouts
+
+        itemPanel = new JPanel(new GridBagLayout());
+        itemPanelPopulate(itemPanel, selectedShelf.getItemArr());
+        JScrollPane itemJListScroll = new JScrollPane(itemPanel); //Create JScrollPane to contain availLayouts
+
         itemListPanel.add(itemJListScroll, createGbc(0, 0));
 
-
-    }
-
-    private void refreshItemList(DefaultListModel<JTextField> OrigItemList) {
-        //Remove all empty containers
-        for(int i = 0; i < OrigItemList.size(); i++) {
-            if(OrigItemList.get(i).getText().isEmpty()) {
-                OrigItemList.remove(i);
+        //Refresh Button
+        JPanel refreshPanel = new JPanel(new GridBagLayout());
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshItemList();
             }
-        }
+        });
+        refreshPanel.add(refreshButton, createGbc(1, 0));
 
-        //Sort list
-        insertionSort(OrigItemList);
 
-        //Copy DefaultListModel to String[] and replace selectedShelf's itemArr
-        String[] itemArr = new String[itemList.getSize()];
-        for(int i = 0; i < itemList.getSize(); i++) {
-            itemArr[i] = itemList.get(i).getText();
-        }
-        selectedShelf.setItemArr(itemArr);
-
-        //Add Empty Text Area
-        OrigItemList.addElement(new JTextField());
+        //Add panels
+        add(headerPanel, createGbc(0, 0));
+        add(itemListPanel, createGbc(0, 1));
+        add(refreshPanel, createGbc(0, 2));
     }
 
+    private void itemPanelPopulate(JPanel itemPanel, String[] items) {
+        insertionSort(items);
+        for(int i = 0; i < items.length; i++) {
+            JTextField newTextField = new JTextField(items[i]);
+            newTextField.setMaximumSize(new Dimension(Integer.MAX_VALUE, newTextField.getPreferredSize().height));
+            itemPanel.add(newTextField, createGbc(1, i));
+        }
+        JTextField newTextField = new JTextField();
+        newTextField.setMaximumSize(new Dimension(Integer.MAX_VALUE, newTextField.getPreferredSize().height));
+        itemPanel.add(newTextField, createGbc(1, items.length));
+    }
 
+    private void refreshItemList() {
+        String[] items = readCurrentItems(itemPanel); //read items
+        insertionSort(items); //sort items
 
-    private void insertionSort(DefaultListModel<JTextField> OrigItemList) {
-        for (int i = 1; i < OrigItemList.getSize(); i++) {
-            for(int j = i; j > 0; j--) {
-                if(OrigItemList.get(j).getText().compareToIgnoreCase(OrigItemList.get(j-1).getText()) < 0) { //If item at j is < item at j-1
-                    JTextField temp = OrigItemList.get(j);
-                    OrigItemList.setElementAt(OrigItemList.get(j-1), j);
-                    OrigItemList.setElementAt(temp, j-1);
+        itemPanel.removeAll(); //remove all items from panel
+        itemPanelPopulate(itemPanel, items); //populate with new info
+        repaint();
 
-                } else { //If item at j >= j-1;
-                    break;
+    }
+
+    private String[] readCurrentItems(JPanel itemPanel) {
+        Component[] textFields = itemPanel.getComponents();
+        ArrayList<String> itemList = new ArrayList<>();
+        JTextField textField;
+
+        for(Component component : textFields) {
+            if(component instanceof JTextField) {
+                textField = (JTextField) component;
+
+                if(!textField.getText().isEmpty()) {
+                    itemList.add(textField.getText());
                 }
             }
+        }
+
+        String[] itemArr = new String[itemList.size()];
+        itemArr = itemList.toArray(itemArr);
+        insertionSort(itemArr);
+        return itemArr;
+    }
+
+
+    private static void insertionSort(String[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            String key = arr[i];
+            int j;
+
+            for (j = i - 1; j >= 0 && arr[j].compareTo(key) > 0; --j) {
+                arr[j + 1] = arr[j];
+            }
+            arr[j + 1] = key;
         }
     }
 
     public void setSelectedShelf(Shelf selectedShelf_) {
         selectedShelf = selectedShelf_;
+    }
+
+    public void saveShelfItems() {
+        selectedShelf.setItemArr(readCurrentItems(itemPanel));
     }
 
 

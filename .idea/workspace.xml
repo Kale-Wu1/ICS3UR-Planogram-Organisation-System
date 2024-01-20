@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Progress on shelf integration.">
-      <change afterPath="$PROJECT_DIR$/src/LayoutItemViewerToolsPanel.java" afterDir="false" />
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Added item viewer (Still not functional). Prevent duplicate file search results integrated.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutSearchToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutSearchToolsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LayoutItemViewerToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutItemViewerToolsPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LayoutViewerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LayoutViewerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shelf.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,19 +57,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Jan19thUpdates",
-    "last_opened_file_path": "C:/Users/kalew/Downloads/Video Games"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Jan19thUpdates&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kalew/Downloads/Video Games&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -195,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705633617285</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added item viewer (Still not functional). Prevent duplicate file search results integrated.">
+      <option name="closed" value="true" />
+      <created>1705689929565</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705689929565</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,6 +244,7 @@
     <MESSAGE value="Finished File Creation and Reading w/o shelves." />
     <MESSAGE value="Progress on integration and layout editing" />
     <MESSAGE value="Progress on shelf integration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Progress on shelf integration." />
+    <MESSAGE value="Added item viewer (Still not functional). Prevent duplicate file search results integrated." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added item viewer (Still not functional). Prevent duplicate file search results integrated." />
   </component>
 </project>

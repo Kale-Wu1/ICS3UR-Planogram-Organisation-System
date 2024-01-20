@@ -21,10 +21,20 @@ public class LayoutViewerPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 selectedShelf = checkShelfClicked(e.getX(), e.getY());
 
-                if(parentWindow.getCurrentCard() == 2) {
+                if(parentWindow.getCurrentCard() == 0 && selectedShelf != null) {
+                    openItemViewer(selectedShelf);
+                } else if(parentWindow.getCurrentCard() == 2) {
                     parentWindow.getEditorMenu().setSelectedShelf(selectedShelf);
-                } if(parentWindow.getCurrentCard() == 0) {
-                    parentWindow.getItemViewMenu().setSelectedShelf(selectedShelf);
+
+                } else if(parentWindow.getCurrentCard() == 4) {
+                    parentWindow.getItemViewMenu().saveShelfItems();
+                    if(selectedShelf != null) {
+                        openItemViewer(selectedShelf);
+                    } else {
+                        parentWindow.setCard(0);
+                    }
+                } else {
+                    parentWindow.setCard(0);
                 }
             }
 
@@ -68,5 +78,11 @@ public class LayoutViewerPanel extends JPanel {
             }
         }
         return null;
+    }
+
+    private void openItemViewer(Shelf selectedShelf) {
+        parentWindow.getItemViewMenu().setSelectedShelf(selectedShelf);
+        parentWindow.setCard(4);
+
     }
 }

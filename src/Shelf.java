@@ -21,6 +21,10 @@ public class Shelf {
 
     }
 
+    public Shelf() {
+        this("Shelf", 0, 0, 10, 10, 0, new String[0]);
+    }
+
     //Accessor Methods
     public String getName() {
         return name;

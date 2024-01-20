@@ -23,7 +23,7 @@ public class LayoutViewerWindow extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new LayoutViewerWindow(new Layout("C:\\Users\\kalew\\Downloads\\testLayouts\\LayoutTest3.txt"));
+                new LayoutViewerWindow(new Layout("C:\\Users\\kalew\\Downloads\\testLayouts\\MyLayoutLayout.txt"));
             }
         });
     }
