@@ -120,8 +120,6 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
     public void setSelectedShelf(Shelf selectedShelf_) {
         selectedShelf = selectedShelf_;
         itemPanelPopulate(itemPanel, selectedShelf.getItemArr());
-        System.out.println(selectedShelf.getName());
-        System.out.println(Arrays.toString(selectedShelf.getItemArr()));
     }
 
     public void saveShelfItems() {

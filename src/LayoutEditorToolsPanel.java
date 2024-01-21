@@ -199,7 +199,6 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
                     } else {
                         //Compare this shelf's position to all existing shelves except itself
                         for (Shelf shelf : parentWindow.getStorageLayout().getShelfList()) {
-                            System.out.println("Compared " + selectedShelf.getName() + " to " + shelf.getName());
                             if (isIntersecting(shelf, tempShelf) && shelf != selectedShelf) {
                                 errorMessageLabel.setText("Shelves cannot intersect!");
                                 infoIsValid = false;
@@ -216,7 +215,6 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
         }
 
         if(infoIsValid) {
-            System.out.println("Shelf appears to be valid!");
             selectedShelf.setName(shelfNameTextField.getText().replaceAll(" ", ""));
             selectedShelf.setXPos(Integer.parseInt(xPosTextField.getText()));
             selectedShelf.setYPos(Integer.parseInt(yPosTextField.getText()));
@@ -290,20 +288,12 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
     }
 
     private void saveButtonAction() {
-        System.out.print("Current existing shelves: ");
-
-        for(Shelf shelf : parentWindow.getStorageLayout().getShelfList()) {
-            System.out.print(shelf.getName() + " ");
-        }
-        System.out.println();
-
         selectedShelf = findShelfFromName(shelfNameTextField.getText());
 
 
         if(selectedShelf == null) { //If name of shelf is not found to exist
             createNewShelf();
         } else { //if current shelf already exists
-            System.out.println("Current Selected Shelf: " + selectedShelf.getName());
             updateShelfInfo(selectedShelf, false);
         }
 

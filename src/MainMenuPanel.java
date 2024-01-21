@@ -232,7 +232,6 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
                 System.err.println("Error reading file.");
             }
         }
-        System.out.println("Titles: " +  Arrays.toString(titles));
         return titles;
     }
 }

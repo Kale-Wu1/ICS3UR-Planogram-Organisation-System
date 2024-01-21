@@ -36,9 +36,7 @@ public class Layout implements FileUtils{
             String[] shelfInfo;
             for(int i = 7; i < layoutInfo.length; i++) {
                 shelfInfo = layoutInfo[i].split("\\|");
-                System.out.println(Arrays.toString(shelfInfo));
                 shelfList.add(new Shelf(shelfInfo[0], Integer.parseInt(shelfInfo[1]), Integer.parseInt(shelfInfo[2]), Integer.parseInt(shelfInfo[3]), Integer.parseInt(shelfInfo[4]), Integer.parseInt(shelfInfo[5]), shelfInfo[6].split(",")));
-                System.out.println(Arrays.toString(shelfInfo[6].split(",")));
             }
         }
     }
