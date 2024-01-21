@@ -69,10 +69,8 @@ public class LayoutViewerPanel extends JPanel {
                 g.fillRect(shelf.getXPos(), shelf.getYPos(), shelf.getWidth(), shelf.getLength());
                 g.setColor(Color.BLACK);
             }
-            FontMetrics fontMetrics = g.getFontMetrics();
-            int textXPos = shelf.getXPos() + shelf.getWidth()/2 - fontMetrics.stringWidth(shelf.getName()) / 2;
-            int textYPos = shelf.getYPos() + shelf.getLength()/2 - fontMetrics.getHeight() / 2;
-            g.drawString(shelf.getName(), textXPos, textYPos);
+
+            drawShelfText(g, shelf.getName(), shelf);
         }
         revalidate();
         repaint();
@@ -101,5 +99,41 @@ public class LayoutViewerPanel extends JPanel {
         repaint();
     }
 
-    //Accessors
+    private void drawShelfText(Graphics g, String text, Shelf shelf) {
+        // Set font
+        g.setFont(g.getFont().deriveFont(12f));
+
+        // Get FontMetrics to calculate text size
+        FontMetrics fontMetrics = g.getFontMetrics();
+        int textWidth = fontMetrics.stringWidth(text);
+        int textHeight = fontMetrics.getAscent();
+
+        // Calculate position to center the text within the rectangle
+        int stringXPos = shelf.getXPos() + (shelf.getWidth() - textWidth) / 2;
+        int stringYPos = shelf.getYPos() + (shelf.getLength() + textHeight) / 2;
+
+        // Truncate the text if it exceeds the width of the rectangle
+        if (textWidth > shelf.getWidth()) {
+            // Truncate text and append ellipsis to indicate truncation
+            int ellipsisWidth = g.getFontMetrics().stringWidth("...");
+            int remainingWidth = shelf.getWidth() - ellipsisWidth;
+
+            for(int i = text.length(); i > 0; i--) {
+                if(g.getFontMetrics().stringWidth(text.substring(0, i)) <= remainingWidth) {
+                    text = text.substring(0, i) + "...";
+                    break;
+                }
+            }
+
+            stringXPos = shelf.getXPos();
+
+        }
+
+
+
+        // Draw text
+        g.setColor(Color.BLACK);
+        g.drawString(text, stringXPos, stringYPos);
+    }
+
 }
