@@ -33,8 +33,8 @@ public class LayoutViewerWindow extends JFrame {
         currentCard = 0;
 
         //currentLayout = currentLayout_;
-        final int FRAME_WIDTH = 1000;
-        final int FRAME_LENGTH = 500;
+        final int FRAME_WIDTH = layout.getroomWidth();
+        final int FRAME_LENGTH = layout.getroomLength();
 
         //Set values for window
         setBounds(0, 0, FRAME_WIDTH, FRAME_LENGTH);
@@ -47,7 +47,7 @@ public class LayoutViewerWindow extends JFrame {
         JPanel parentPanel = new JPanel(null);
         GridBagConstraints gbc;
 
-        parentViewPanel = new LayoutViewerPanel(this, layout.getShelfArr());
+        parentViewPanel = new LayoutViewerPanel(this, layout.getShelfList());
         parentViewPanel.setBounds(0, 0, FRAME_WIDTH/10*7, FRAME_LENGTH);
         parentPanel.add(parentViewPanel);
 

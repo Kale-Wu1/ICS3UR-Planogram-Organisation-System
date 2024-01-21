@@ -12,7 +12,13 @@ public class InstructionsPanel extends JPanel implements GBCLayoutOrganiser{
         setLayout(new GridBagLayout());
 
         //Add Instructions
-        final String INSTRUCTIONS_TEXT = "";
+        final String INSTRUCTIONS_TEXT = "The planogram storage system is a workplace organisation system developed by Kale Wu for ICS3UR." +
+                "\nThe program works by visually representing a workspace via \"shelves\" in a \"layout\". Each shelf contains items which are stored." +
+                "\nTo begin, create a new layout and fill out the appropriate information. Then create new shelves by clicking the appropriate buttons and filling out the information." +
+                "\nItems may be added, removed, or changed from a shelf by clicking on the shelf which in the search menu, and accessing them from the item list on the right hand side of the screen directly. " +
+                "\nShelf characteristics may be adjusted by accessing the \"Edit Shelf\" menu, and clicking on the shelf that requires changes." +
+                "\nAfter changes to a shelf are performed, please remember to save your changes with the appropriate button. Item changes are saved automatically when the layout is exited." +
+                "\nWhen finished with a layout, return to the main menu to save your changes.";
 
         JPanel instructionsPanel = new JPanel(new GridBagLayout());
         JLabel instructionsHeader = new JLabel("Instructions");

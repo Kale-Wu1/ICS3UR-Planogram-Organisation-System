@@ -13,6 +13,7 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
     JPanel itemPanel;
 
     public LayoutItemViewerToolsPanel(LayoutViewerWindow parentWindow_, Shelf selectedShelf_) {
+
         selectedShelf = selectedShelf_;
         parentWindow = parentWindow_;
 
@@ -31,11 +32,14 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
         //Item List
         JPanel itemListPanel = new JPanel(new GridBagLayout());
 
-        itemPanel = new JPanel(new GridBagLayout());
+        itemPanel = new JPanel();
+        itemPanel.setLayout(new BoxLayout(itemPanel, BoxLayout.Y_AXIS));
         itemPanelPopulate(itemPanel, selectedShelf.getItemArr());
-        JScrollPane itemJListScroll = new JScrollPane(itemPanel); //Create JScrollPane to contain availLayouts
 
-        itemListPanel.add(itemJListScroll, createGbc(0, 0));
+        JScrollPane itemPanelScroll = new JScrollPane(itemPanel); //Create JScrollPane to contain availLayouts
+        itemPanelScroll.setMaximumSize(new Dimension(Integer.MAX_VALUE, 500));
+
+        itemListPanel.add(itemPanelScroll, createGbc(0, 0));
 
         //Refresh Button
         JPanel refreshPanel = new JPanel(new GridBagLayout());
@@ -56,24 +60,25 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
     }
 
     private void itemPanelPopulate(JPanel itemPanel, String[] items) {
+        itemPanel.removeAll(); //remove all items from panel
         insertionSort(items);
-        for(int i = 0; i < items.length; i++) {
-            JTextField newTextField = new JTextField(items[i]);
+        for (String item : items) {
+            JTextField newTextField = new JTextField(item);
             newTextField.setMaximumSize(new Dimension(Integer.MAX_VALUE, newTextField.getPreferredSize().height));
-            itemPanel.add(newTextField, createGbc(1, i));
+            itemPanel.add(newTextField);
         }
         JTextField newTextField = new JTextField();
         newTextField.setMaximumSize(new Dimension(Integer.MAX_VALUE, newTextField.getPreferredSize().height));
-        itemPanel.add(newTextField, createGbc(1, items.length));
+        itemPanel.add(newTextField);
     }
 
     private void refreshItemList() {
         String[] items = readCurrentItems(itemPanel); //read items
         insertionSort(items); //sort items
 
-        itemPanel.removeAll(); //remove all items from panel
         itemPanelPopulate(itemPanel, items); //populate with new info
-        repaint();
+        itemPanel.revalidate();
+        itemPanel.repaint();
 
     }
 
@@ -86,7 +91,7 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
             if(component instanceof JTextField) {
                 textField = (JTextField) component;
 
-                if(!textField.getText().isEmpty()) {
+                if(!textField.getText().trim().isEmpty() && !itemList.contains(textField.getText().trim())) {
                     itemList.add(textField.getText());
                 }
             }
@@ -114,6 +119,9 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
 
     public void setSelectedShelf(Shelf selectedShelf_) {
         selectedShelf = selectedShelf_;
+        itemPanelPopulate(itemPanel, selectedShelf.getItemArr());
+        System.out.println(selectedShelf.getName());
+        System.out.println(Arrays.toString(selectedShelf.getItemArr()));
     }
 
     public void saveShelfItems() {

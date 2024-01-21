@@ -1,6 +1,7 @@
 import java.io.*;
 import java.nio.Buffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Layout implements FileUtils{
     //File Management
@@ -15,7 +16,7 @@ public class Layout implements FileUtils{
     private int roomLength;
     private int roomWidth;
     private String notes;
-    private Shelf[] shelfArr;
+    private ArrayList<Shelf> shelfList;
 
 
 
@@ -30,12 +31,14 @@ public class Layout implements FileUtils{
         notes = layoutInfo[6];
 
         //Add all other lines to shelfArr as Shelf objects
-        shelfArr = new Shelf[layoutInfo.length-7];
+        shelfList = new ArrayList<>();
         if(layoutInfo.length > 7) {
             String[] shelfInfo;
             for(int i = 7; i < layoutInfo.length; i++) {
-                shelfInfo = layoutInfo[i].split(" ");
-                shelfArr[i-7] = new Shelf(shelfInfo[0], Integer.parseInt(shelfInfo[1]), Integer.parseInt(shelfInfo[2]),Integer.parseInt(shelfInfo[3]), Integer.parseInt(shelfInfo[4]),Integer.parseInt(shelfInfo[5]), shelfInfo[6].split(","));
+                shelfInfo = layoutInfo[i].split("\\|");
+                System.out.println(Arrays.toString(shelfInfo));
+                shelfList.add(new Shelf(shelfInfo[0], Integer.parseInt(shelfInfo[1]), Integer.parseInt(shelfInfo[2]), Integer.parseInt(shelfInfo[3]), Integer.parseInt(shelfInfo[4]), Integer.parseInt(shelfInfo[5]), shelfInfo[6].split(",")));
+                System.out.println(Arrays.toString(shelfInfo[6].split(",")));
             }
         }
     }
@@ -62,14 +65,27 @@ public class Layout implements FileUtils{
     public String getNotes() {
         return notes;
     }
-    public Shelf[] getShelfArr() {
-        return shelfArr;
+    public ArrayList<Shelf> getShelfList() {
+        return shelfList;
     }
     public String[] getLayoutInfo() {
         return layoutInfo;
     }
 
-    public void setShelfArr(Shelf[] shelfArr_) {
-        shelfArr = shelfArr_;
+    public void setShelfArr(ArrayList<Shelf> shelfArr_) {
+        shelfList = shelfArr_;
+    }
+
+    public void addShelf(Shelf newShelf) {
+        shelfList.add(newShelf);
+    }
+
+    public void removeShelf(Shelf shelfToDelete) {
+        for(int i = 0; i < shelfList.size(); i++) {
+            if(shelfList.get(i).getName().equals(shelfToDelete.getName())) {
+                shelfList.remove(i);
+                break;
+            }
+        }
     }
 }

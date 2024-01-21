@@ -158,7 +158,6 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
 
             File[] searchResults = new File[tempFileList.size()];
             searchResults = tempFileList.toArray(searchResults);
-            System.out.println("Found files: " + Arrays.toString(searchResults));
             return searchResults;
         } else {
             searchResultsLabel.setText("No valid results were found.");

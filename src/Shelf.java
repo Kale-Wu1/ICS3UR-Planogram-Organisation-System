@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 
 public class Shelf {
     //Instance Variables
@@ -9,6 +10,7 @@ public class Shelf {
     private int width;
     private String[] itemArr;
     private int rotationAngle;
+    private boolean highlighted;
 
     public Shelf(String name_, int xPos_, int yPos_, int length_, int width_, int rotationAngle_, String[] itemArr_) {
         name = name_;
@@ -18,11 +20,12 @@ public class Shelf {
         width = width_;
         itemArr = itemArr_;
         rotationAngle = rotationAngle_;
+        System.out.println("New Shelf created with items: " + Arrays.toString(itemArr));
 
     }
 
     public Shelf() {
-        this("Shelf", 0, 0, 10, 10, 0, new String[0]);
+        this("", 0, 0, 0, 0, 0, new String[0]);
     }
 
     //Accessor Methods
@@ -54,6 +57,9 @@ public class Shelf {
         return itemArr;
     }
 
+    public boolean getIsHighlighted() {
+        return highlighted;
+    }
 
     //Mutator Methods
     public void setName(String name_) {
@@ -84,8 +90,13 @@ public class Shelf {
         itemArr = itemArr_;
     }
 
+    public void setHighlighted(boolean highlighted) {
+        this.highlighted = highlighted;
+    }
+
     //Instance Methods
     public boolean isClicked(int xClicked, int yClicked) {
         return (xClicked > xPos && xClicked < xPos+width) && (yClicked > yPos && yClicked < yPos+length);
     }
+
 }

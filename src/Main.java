@@ -48,7 +48,10 @@ public class Main extends JFrame{
 
         //Add Components to parentPanel
         parentPanel.add(mainMenuPanel, "mainMenu");
-        parentPanel.add(instructionsPanel, "instructions");
+        parentPanel.add(instructionsPanel, "instructions"
+
+
+        );
         parentPanel.add(layoutCreatorPanel, "layoutCreator");
 
         //Add Parent Panel to Window

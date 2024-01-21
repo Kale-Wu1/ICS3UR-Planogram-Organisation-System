@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Progress on item viewer and code restructuring to GUI-Object-File interaction. Fixed duplicate file results issue." />
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Progress on item viewer and code restructuring to GUI-Object-File interaction. Fixed duplicate file results issue.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InstructionsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InstructionsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LayoutItemViewerToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutItemViewerToolsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LayoutViewerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LayoutViewerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelTester.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shelf.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,19 +63,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Jan19thUpdates&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kalew/Downloads/Video Games&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Jan20thUpdates",
+    "last_opened_file_path": "C:/Users/kalew/Downloads/Video Games"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
