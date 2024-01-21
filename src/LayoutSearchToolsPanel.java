@@ -4,14 +4,19 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser{
     LayoutViewerWindow parentWindow;
+    JTextField searchTextField;
+    DefaultListModel<String> searchResultsInfoList;
+    JList<String> searchResultsBufferList;
+    Shelf selectedShelf;
 
     public LayoutSearchToolsPanel(LayoutViewerWindow parentWindow_) {
         parentWindow = parentWindow_;
         setLayout(new GridBagLayout());
-        //JPanel parentPanel = parentWindow_.getParentToolMenuPanel();
 
         //Add Header
         //TODO: Center text in title
@@ -25,13 +30,13 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
         //Add Layout Directory Search Bar
         JPanel searchBarPanel = new JPanel(new GridBagLayout());
 
-        JTextField searchTextField = new JTextField(30);
+        searchTextField = new JTextField(30);
 
         JButton searchButton = new JButton("Search");
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Search and update DefaultListModel
+                searchForItem(searchTextField.getText());
             }
         });
 
@@ -45,21 +50,25 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
         JLabel availLayoutMessage = new JLabel("Search Results: "); //Add Subheading
         searchResultsPanel.add(availLayoutMessage, createGbc(1, 0));
 
-        DefaultListModel<String> searchResultsInfoList = new DefaultListModel<>(); //Create DefaultListModel for layout titles
-        JList<String> searchResultsBufferList = new JList<>(searchResultsInfoList); //Create JList to contain layoutTitlesList
-        JScrollPane searchResultsScroll = new JScrollPane(searchResultsBufferList); //Create JScrollPane to contain availLayouts
+        searchResultsInfoList = new DefaultListModel<>(); //Create DefaultListModel for search results
+        searchResultsBufferList = new JList<>(searchResultsInfoList); //Create JList to contain searchResults
+        JScrollPane searchResultsScroll = new JScrollPane(searchResultsBufferList); //Create JScrollPane to contain searchResultsBufferList
         searchResultsBufferList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!e.getValueIsAdjusting()) {
                     //TODO: Highlight correct shelf when an item is selected
-
+                    if(searchResultsBufferList.getSelectedIndex() != -1) {
+                        openItemViewerForIndex(searchResultsBufferList.getSelectedIndex());
+                    }
                 }
             }
         });
 
         //Create and add JScrollPane
-        searchResultsScroll.setMaximumSize(new Dimension(300, 400));
+        searchResultsScroll.setMinimumSize(new Dimension(300, 200));
+        searchResultsScroll.setPreferredSize(new Dimension(300, 200));
+        searchResultsScroll.setMaximumSize(new Dimension(300, 200));
         searchResultsScroll.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         searchResultsScroll.createVerticalScrollBar();
         searchResultsPanel.add(searchResultsScroll, createGbc(1, 1));
@@ -81,7 +90,6 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: Go to Editor
                 parentWindow.setCard(2);
             }
         });
@@ -96,7 +104,7 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                saveAll();
                 new Main();
                 parentWindow.dispose();
             }
@@ -114,6 +122,65 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
 
     private void saveAll() {
         //TODO: SAVE ALL USING OBJECTS
+        parentWindow.getStorageLayout().saveToFile();
     }
+
+    private void searchForItem(String item) {
+        //Clear highlights and search results
+        searchResultsInfoList.clear();
+        parentWindow.getParentViewPanel().clearHighlightedShelves();
+
+        //Find item
+        for(Shelf shelf : parentWindow.getStorageLayout().getShelfList()) {
+            int searchIndex = binarySearch(shelf.getItemArr(), item);
+            if(searchIndex != -1) {
+                shelf.setHighlighted(true);
+                searchResultsInfoList.addElement("Item " + (searchIndex + 1) + " of " + shelf.getName());
+            }
+        }
+
+        if(searchResultsInfoList.isEmpty()) {
+            searchResultsInfoList.addElement("Item " + item + " not found.");
+        }
+        searchResultsBufferList.revalidate();
+        searchResultsBufferList.repaint();
+
+    }
+
+    public static int binarySearch(String[] itemArr, String item) {
+        int lowIndex = 0;
+        int highIndex = itemArr.length - 1;
+
+        while (lowIndex <= highIndex) {
+            int searchIndex = lowIndex + (highIndex - lowIndex) / 2;
+            int itemDiff = item.toLowerCase().replaceAll(" ", "").compareTo(itemArr[searchIndex].toLowerCase().replaceAll(" ", ""));
+
+            if (itemDiff == 0) {
+                return searchIndex;
+            } else if (itemDiff < 0) {
+                highIndex = searchIndex - 1;
+            } else {
+                lowIndex = searchIndex + 1;
+            }
+        }
+
+        return -1;
+    }
+
+    private void openItemViewerForIndex(int selectedSearchResult) {
+        for(Shelf shelf : parentWindow.getStorageLayout().getShelfList()) {
+            if(searchResultsInfoList.get(selectedSearchResult).contains(shelf.getName())) {
+                parentWindow.getItemViewMenu().setSelectedShelf(shelf);
+                parentWindow.setCard(4);
+            }
+        }
+    }
+
+    public void refresh() {
+        searchTextField.setText("");
+        searchResultsInfoList.clear();
+    }
+
+
 
 }

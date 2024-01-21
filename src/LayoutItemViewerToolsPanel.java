@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrganiser, FileUtils {
+public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrganiser{
     Shelf selectedShelf;
     LayoutViewerWindow parentWindow;
     JPanel itemPanel;
@@ -92,7 +92,7 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
                 textField = (JTextField) component;
 
                 if(!textField.getText().trim().isEmpty() && !itemList.contains(textField.getText().trim())) {
-                    itemList.add(textField.getText());
+                    itemList.add(textField.getText().replaceAll(",", ""));
                 }
             }
         }

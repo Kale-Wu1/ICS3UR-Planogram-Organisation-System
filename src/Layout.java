@@ -75,6 +75,9 @@ public class Layout implements FileUtils{
     public void setShelfArr(ArrayList<Shelf> shelfArr_) {
         shelfList = shelfArr_;
     }
+    public void setNotes(String notes_) {
+        notes = notes_;
+    }
 
     public void addShelf(Shelf newShelf) {
         shelfList.add(newShelf);
@@ -87,5 +90,46 @@ public class Layout implements FileUtils{
                 break;
             }
         }
+    }
+
+    public void saveToFile() {
+        layoutInfo = new String[7+shelfList.size()];
+        layoutInfo[0] = name;
+        layoutInfo[1] = author;
+        layoutInfo[2] = units;
+        layoutInfo[3] = String.valueOf(roomWidth);
+        layoutInfo[4] = String.valueOf(roomLength);
+        layoutInfo[5] = directory;
+        layoutInfo[6] = notes;
+
+        //Write shelfArr to layoutInfo
+        String shelfInfo;
+        Shelf currentShelf;
+        for(int i = 7; i < 7+shelfList.size(); i++) {
+            currentShelf = shelfList.get(i-7);
+            shelfInfo = currentShelf.getName() + "|" + currentShelf.getXPos() + "|" + currentShelf.getYPos() + "|"
+                    + currentShelf.getLength() + "|" + currentShelf.getWidth() + "|" + currentShelf.getRotationAngle()
+                    + "|" + Arrays.toString(currentShelf.getItemArr()).replaceAll("\\[", "").replaceAll("]", "").replaceAll(" ", "");
+            layoutInfo[i] = shelfInfo;
+        }
+
+        //Write layoutInfo to file
+        try {
+            FileWriter fw = new FileWriter(directory);
+            PrintWriter pw = new PrintWriter(fw);
+            for(String element : layoutInfo) {
+                pw.println(element);
+            }
+            pw.close();
+        } catch (IOException e) {
+            System.err.println("There was an error writing to file " + directory + ".");
+        }
+
+
+
+
+
+
+
     }
 }

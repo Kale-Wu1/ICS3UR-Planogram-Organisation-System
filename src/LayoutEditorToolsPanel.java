@@ -12,9 +12,7 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
     LayoutViewerWindow parentWindow;
     Shelf selectedShelf;
     JPanel editorTools;
-    //Menu Cards
-    JPanel noShelfSelectedMenu;
-    JPanel shelfSelectedMenu;
+
 
 
     //Information Fields
@@ -45,60 +43,7 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
         headerPanel.add(mainMenuHeader);
 
         //Create CardLayout for selecting shelves
-        editorTools = new JPanel(new CardLayout());
-        noShelfSelectedMenu = noShelfSelectedMenu();
-        shelfSelectedMenu = shelfSelectedMenu();
-        editorTools.add(noShelfSelectedMenu, "noShelfSelectedMenu");
-        editorTools.add(shelfSelectedMenu, "shelfSelectedMenu");
-
-        add(headerPanel, createGbc(0, 0));
-        add(editorTools, createGbc(0, 1));
-
-    }
-
-    private JPanel noShelfSelectedMenu() {
-        //Shelf Not Selected Menu
-        JPanel noShelfSelectedMenu = new JPanel(new GridBagLayout());
-        JLabel instruction = new JLabel("Please select a shelf or click [Create New Shelf] to create a new one!");
-        JButton createNewShelfButton = new JButton("Create New Shelf");
-        createNewShelfButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO: Create New Shelf
-                setCard(1);
-            }
-        });
-
-        JButton returnButton = new JButton("Return to Search Menu");
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                parentWindow.setCard(0);
-            }
-        });
-
-        noShelfSelectedMenu.add(instruction, createGbc(0, 0));
-        noShelfSelectedMenu.add(createNewShelfButton, createGbc(0, 1));
-        noShelfSelectedMenu.add(returnButton, createGbc(0, 2));
-
-        return noShelfSelectedMenu;
-    }
-
-    private void setCard(int card) {
-        switch(card) {
-            case 0:
-                noShelfSelectedMenu.setVisible(true);
-                shelfSelectedMenu.setVisible(false);
-                break;
-            case 1:
-                noShelfSelectedMenu.setVisible(false);
-                shelfSelectedMenu.setVisible(true);
-                break;
-        }
-    }
-
-    private JPanel shelfSelectedMenu() {
-        JPanel shelfSelectedMenu = new JPanel(new GridBagLayout());
+        editorTools = new JPanel(new GridBagLayout());
 
         //Name Textfield
         JPanel shelfNamePanel = new JPanel(new GridBagLayout());
@@ -141,29 +86,18 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
         rotationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(currentShelfRotation == 0) {
-                    currentShelfRotation = 1;
-                } else {
-                    currentShelfRotation = 0;
-                }
+                rotateShelf();
 
-                if(selectedShelf != null) {
-                    if(selectedShelf.getRotationAngle() == 0) {
-                    selectedShelf.setRotationAngle(1);
-                    } else {
-                    selectedShelf.setRotationAngle(0);
-                    }
-                }
             }
         });
         rotationPanel.add(rotationLabel, createGbc(0, 0));
         rotationPanel.add(rotationButton, createGbc(1, 0));
-        
+
         //Error Message label
         JPanel errorMessagePanel = new JPanel(new GridBagLayout());
         errorMessageLabel = new JLabel();
         errorMessagePanel.add(errorMessageLabel, createGbc(0, 0));
-        
+
         //Util Buttons
         JPanel utilButtonsPanel = new JPanel(new GridBagLayout());
         JButton saveCurrentShelfButton = new JButton("Save");
@@ -210,15 +144,16 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
         });
         returnPanel.add(returnButton);
 
-        shelfSelectedMenu.add(shelfNamePanel, createGbc(0, 0));
-        shelfSelectedMenu.add(positionPanel, createGbc(0, 1));
-        shelfSelectedMenu.add(sizePanel, createGbc(0, 2));
-        shelfSelectedMenu.add(rotationPanel, createGbc(0, 3));
-        shelfSelectedMenu.add(errorMessagePanel, createGbc(0, 4));
-        shelfSelectedMenu.add(utilButtonsPanel, createGbc(0, 5));
-        shelfSelectedMenu.add(returnPanel, createGbc(0, 6));
+        editorTools.add(shelfNamePanel, createGbc(0, 0));
+        editorTools.add(positionPanel, createGbc(0, 1));
+        editorTools.add(sizePanel, createGbc(0, 2));
+        editorTools.add(rotationPanel, createGbc(0, 3));
+        editorTools.add(errorMessagePanel, createGbc(0, 4));
+        editorTools.add(utilButtonsPanel, createGbc(0, 5));
+        editorTools.add(returnPanel, createGbc(0, 6));
 
-        return shelfSelectedMenu;
+        add(headerPanel, createGbc(0, 0));
+        add(editorTools, createGbc(0, 1));
     }
 
     private void updateShelfInfo(Shelf selectedShelf_, boolean isNewShelf) {
@@ -232,6 +167,7 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
             infoIsValid = false;
         } else {
             try {
+
                 int xPos = Integer.parseInt(xPosTextField.getText());
                 int yPos = Integer.parseInt(yPosTextField.getText());
                 int width = Integer.parseInt(widthTextField.getText());
@@ -246,14 +182,13 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
                 } else if(width < 1 || width > parentWindow.getStorageLayout().getroomWidth()-xPos) {
                     errorMessageLabel.setText("Please enter a valid width (1 - " + (parentWindow.getStorageLayout().getroomWidth()-xPos) + ").");
                     infoIsValid = false;
-                } else if(length < 1 || xPos > parentWindow.getStorageLayout().getroomLength()-yPos) {
+                } else if(length < 1 || length > parentWindow.getStorageLayout().getroomLength()-yPos) {
                     errorMessageLabel.setText("Please enter a valid length (1 - " + (parentWindow.getStorageLayout().getroomLength()-yPos) + ").");
                     infoIsValid = false;
                 } else {
-                    Shelf tempShelf;
+                    Shelf tempShelf = new Shelf("", xPos, yPos, length, width, currentShelfRotation, new String[0]);
                     if(isNewShelf) {
                         //Compare this shelf's position to all existing shelves
-                        tempShelf = new Shelf("", xPos, yPos, length, width, currentShelfRotation, new String[0]);
                         for (Shelf shelf : parentWindow.getStorageLayout().getShelfList()) {
                             if (isIntersecting(shelf, tempShelf)) {
                                 errorMessageLabel.setText("Shelves cannot intersect!");
@@ -264,15 +199,14 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
                     } else {
                         //Compare this shelf's position to all existing shelves except itself
                         for (Shelf shelf : parentWindow.getStorageLayout().getShelfList()) {
-                            if (isIntersecting(shelf, selectedShelf) && shelf != selectedShelf) {
+                            System.out.println("Compared " + selectedShelf.getName() + " to " + shelf.getName());
+                            if (isIntersecting(shelf, tempShelf) && shelf != selectedShelf) {
                                 errorMessageLabel.setText("Shelves cannot intersect!");
                                 infoIsValid = false;
                                 break;
                             }
                         }
                     }
-
-
                 }
 
             } catch (NumberFormatException e) {
@@ -283,7 +217,7 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
 
         if(infoIsValid) {
             System.out.println("Shelf appears to be valid!");
-            selectedShelf.setName(shelfNameTextField.getText());
+            selectedShelf.setName(shelfNameTextField.getText().replaceAll(" ", ""));
             selectedShelf.setXPos(Integer.parseInt(xPosTextField.getText()));
             selectedShelf.setYPos(Integer.parseInt(yPosTextField.getText()));
             selectedShelf.setWidth(Integer.parseInt(widthTextField.getText()));
@@ -296,8 +230,11 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
         //TODO: Communicate with layout object to create shelf.
         selectedShelf = new Shelf();
         updateShelfInfo(selectedShelf, true);
-        parentWindow.getStorageLayout().addShelf(selectedShelf);
-        parentWindow.getParentViewPanel().repaint();
+        if(!selectedShelf.getName().isEmpty()) {
+            parentWindow.getStorageLayout().addShelf(selectedShelf);
+            parentWindow.getParentViewPanel().repaint();
+        }
+
     }
 
     private static boolean isIntersecting(Shelf shelf1, Shelf shelf2) {
@@ -340,7 +277,7 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
     public void setSelectedShelf(Shelf selectedShelf_) {
         selectedShelf = selectedShelf_;
         displayShelfInfo(selectedShelf);
-        setCard(1);
+        //setCard(1);
     }
 
     private Shelf findShelfFromName(String shelfName) {
@@ -353,14 +290,40 @@ public class LayoutEditorToolsPanel extends JPanel implements GBCLayoutOrganiser
     }
 
     private void saveButtonAction() {
+        System.out.print("Current existing shelves: ");
+
+        for(Shelf shelf : parentWindow.getStorageLayout().getShelfList()) {
+            System.out.print(shelf.getName() + " ");
+        }
+        System.out.println();
+
         selectedShelf = findShelfFromName(shelfNameTextField.getText());
+
+
         if(selectedShelf == null) { //If name of shelf is not found to exist
             createNewShelf();
         } else { //if current shelf already exists
+            System.out.println("Current Selected Shelf: " + selectedShelf.getName());
             updateShelfInfo(selectedShelf, false);
         }
 
         //Update view panel
         parentWindow.getParentViewPanel().repaint();
+    }
+
+    private void rotateShelf() {
+        String temp = widthTextField.getText();
+        widthTextField.setText(lengthTextField.getText());
+        lengthTextField.setText(temp);
+
+        if(currentShelfRotation == 0) {
+            currentShelfRotation = 1;
+        } else {
+            currentShelfRotation = 0;
+        }
+
+        if(selectedShelf != null) {
+            updateShelfInfo(selectedShelf, false);
+        }
     }
 }

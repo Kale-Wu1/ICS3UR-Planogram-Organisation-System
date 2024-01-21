@@ -20,7 +20,7 @@ public class Shelf {
         width = width_;
         itemArr = itemArr_;
         rotationAngle = rotationAngle_;
-        System.out.println("New Shelf created with items: " + Arrays.toString(itemArr));
+
 
     }
 

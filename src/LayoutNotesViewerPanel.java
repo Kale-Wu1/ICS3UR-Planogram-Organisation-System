@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 public class LayoutNotesViewerPanel extends JPanel implements GBCLayoutOrganiser{
     LayoutViewerWindow parentWindow;
+    JTextArea notesTextArea;
     public LayoutNotesViewerPanel(LayoutViewerWindow parentWindow_) {
         parentWindow = parentWindow_;
         //Set layout manager for this panel
@@ -20,7 +21,7 @@ public class LayoutNotesViewerPanel extends JPanel implements GBCLayoutOrganiser
         final String NOTES_TEXT = parentWindow.getStorageLayout().getNotes().replaceAll("\\\\n", "\n");
 
         JPanel notesPanel = new JPanel(new GridBagLayout());
-        JTextArea notesTextArea = new JTextArea(NOTES_TEXT);
+        notesTextArea = new JTextArea(NOTES_TEXT);
 
         notesPanel.add(notesTextArea, createGbc(0, 1));
 
@@ -32,14 +33,15 @@ public class LayoutNotesViewerPanel extends JPanel implements GBCLayoutOrganiser
             //TODO: Return to previous card
             @Override
             public void actionPerformed(ActionEvent e) {
+                parentWindow.getStorageLayout().setNotes(notesTextArea.getText().replaceAll("\n", "\\\\n"));
                 parentWindow.setCard(0);
             }
         });
         returnButtonPanel.add(returnButton, createGbc(0, 0));
 
-        add(headerPanel, createGbc(0, 0));
-        add(notesPanel, createGbc(0, 1));
-        add(returnButtonPanel, createGbc(0, 2));
+        add(headerPanel, createGbc(1, 0));
+        add(notesPanel, createGbc(1, 1));
+        add(returnButtonPanel, createGbc(1, 2));
     }
     
 }

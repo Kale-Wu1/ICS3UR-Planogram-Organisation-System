@@ -4,7 +4,7 @@ import java.awt.*;
 public class LayoutViewerWindow extends JFrame {
 
     //Define Main Divisions
-    private final JPanel parentViewPanel;
+    private final LayoutViewerPanel parentViewPanel;
     private final JPanel parentToolMenuPanel;
 
     //Menu Panels
@@ -76,7 +76,7 @@ public class LayoutViewerWindow extends JFrame {
         return parentToolMenuPanel;
     }
 
-    public JPanel getParentViewPanel() {
+    public LayoutViewerPanel getParentViewPanel() {
         return parentViewPanel;
     }
 
@@ -100,6 +100,7 @@ public class LayoutViewerWindow extends JFrame {
         currentCard = card;
         switch(card) {
             case 0:
+                searchMenu.refresh();
                 searchMenu.setVisible(true);
                 notesMenu.setVisible(false);
                 editorMenu.setVisible(false);
