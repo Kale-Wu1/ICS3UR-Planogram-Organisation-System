@@ -66,7 +66,7 @@ public class LayoutViewerWindow extends JFrame {
         parentToolMenuPanel.add(itemViewMenu, "itemViewMenu");
 
         //Set menu to viewer panel rations
-        parentToolMenuPanel.setBounds((int) (FRAME_WIDTH/10*6.9), 0, (int) (FRAME_WIDTH/10*2.9), FRAME_LENGTH-20);
+        parentToolMenuPanel.setBounds((int) (FRAME_WIDTH/10*7.1), 0, (int) (FRAME_WIDTH/10*2.9), FRAME_LENGTH-20);
         parentPanel.add(parentToolMenuPanel);
 
         //Add parent panel

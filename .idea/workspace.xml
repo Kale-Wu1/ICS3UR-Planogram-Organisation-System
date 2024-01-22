@@ -4,24 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Completed Code w/o documentation">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Completed code documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GBCLayoutOrganiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GBCLayoutOrganiser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InstructionsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InstructionsPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutCreatorPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutCreatorPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutEditorToolsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutItemViewerToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutItemViewerToolsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutNotesViewerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutNotesViewerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutSearchToolsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutSearchToolsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutViewerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LayoutViewerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenuWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shelf.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +62,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Jan21stUpdates",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/kalew/Downloads/Video Games",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -264,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705883472080</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Completed code documentation">
+      <option name="closed" value="true" />
+      <created>1705892102720</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1705892102720</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -316,6 +311,7 @@
     <MESSAGE value="Removed debugging text" />
     <MESSAGE value="Added text boundaries for text in shelves." />
     <MESSAGE value="Completed Code w/o documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed Code w/o documentation" />
+    <MESSAGE value="Completed code documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed code documentation" />
   </component>
 </project>
