@@ -3,11 +3,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The panel containing notes viewing/editing functionality. Used in LayoutViewerWindow.
+ */
 public class LayoutNotesViewerPanel extends JPanel implements GBCLayoutOrganiser{
+    /**
+     * The Parent window.
+     */
     LayoutViewerWindow parentWindow;
+
+    /**
+     * The Notes text area.
+     */
     JTextArea notesTextArea;
+
+    /**
+     * Instantiates a new Layout notes viewer panel.
+     * @param parentWindow_ the parent window
+     */
     public LayoutNotesViewerPanel(LayoutViewerWindow parentWindow_) {
+        //Set parentWindow
         parentWindow = parentWindow_;
+
         //Set layout manager for this panel
         setLayout(new GridBagLayout());
 

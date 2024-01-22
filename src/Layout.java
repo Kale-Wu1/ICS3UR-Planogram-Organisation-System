@@ -3,6 +3,9 @@ import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The layout class. Stores information and translates between GUI and file information
+ */
 public class Layout implements FileUtils{
     //File Management
     private String directory;
@@ -19,7 +22,11 @@ public class Layout implements FileUtils{
     private ArrayList<Shelf> shelfList;
 
 
-
+    /**
+     * Instantiates a new Layout.
+     *
+     * @param directory_ the directory
+     */
     public Layout(String directory_) {
         layoutInfo = readFromFile(directory_);
         name = layoutInfo[0];
@@ -41,46 +48,102 @@ public class Layout implements FileUtils{
         }
     }
 
-    //Accessor Methods
+    /**
+     * Gets name.
+     *
+     * @return the name of the layout
+     */
+//Accessor Methods
     public String getName() {
         return name;
     }
+
+    /**
+     * Gets author.
+     *
+     * @return the author of the layout
+     */
     public String getAuthor() {
         return author;
     }
+
+    /**
+     * Gets units.
+     *
+     * @return the units of the layout
+     */
     public String getUnits() {
         return units;
     }
+
+    /**
+     * Gets length.
+     *
+     * @return the length of the layout
+     */
     public int getroomLength() {
         return roomLength;
     }
+
+    /**
+     * Gets width.
+     *
+     * @return the width of the layout
+     */
     public int getroomWidth() {
         return roomWidth;
     }
+
+    /**
+     * Get directory (filepath).
+     *
+     * @return the filepath of the layout
+     */
     public String getDirectory(){
         return directory;
     }
+
+    /**
+     * Gets notes.
+     *
+     * @return the author notes of the layout
+     */
     public String getNotes() {
         return notes;
     }
+
+    /**
+     * Gets shelf list.
+     *
+     * @return the shelf list
+     */
     public ArrayList<Shelf> getShelfList() {
         return shelfList;
     }
-    public String[] getLayoutInfo() {
-        return layoutInfo;
-    }
 
-    public void setShelfArr(ArrayList<Shelf> shelfArr_) {
-        shelfList = shelfArr_;
-    }
+
+    /**
+     * Sets notes.
+     *
+     * @param notes_ the updated author notes
+     */
     public void setNotes(String notes_) {
         notes = notes_;
     }
 
+    /**
+     * Adds shelf to layout's shelfList.
+     *
+     * @param newShelf the shelf to add
+     */
     public void addShelf(Shelf newShelf) {
         shelfList.add(newShelf);
     }
 
+    /**
+     * Removes shelf from layout's shelfList.
+     * @param shelfToDelete the shelf to delete
+     */
     public void removeShelf(Shelf shelfToDelete) {
         for(int i = 0; i < shelfList.size(); i++) {
             if(shelfList.get(i).getName().equals(shelfToDelete.getName())) {
@@ -90,6 +153,9 @@ public class Layout implements FileUtils{
         }
     }
 
+    /**
+     * Save current layout information to file at directory.
+     */
     public void saveToFile() {
         layoutInfo = new String[7+shelfList.size()];
         layoutInfo[0] = name;
@@ -122,12 +188,5 @@ public class Layout implements FileUtils{
         } catch (IOException e) {
             System.err.println("There was an error writing to file " + directory + ".");
         }
-
-
-
-
-
-
-
     }
 }

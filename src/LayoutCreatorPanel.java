@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The panel containing an information form for new Layout creation. Used in MainMenuWindow.
+ */
 public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,FileUtils{
     //Parent Window
     private final MainMenuWindow parentWindow;
@@ -23,6 +26,11 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
     private final String[] unitOptions;
     private final JLabel errorMessage;
 
+    /**
+     * Instantiates a new Layout creator panel.
+     *
+     * @param parentWindow_ the parent window
+     */
     public LayoutCreatorPanel(MainMenuWindow parentWindow_) {
         parentWindow = parentWindow_;
         setLayout(new GridBagLayout());
@@ -135,6 +143,9 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
         add(utilityButtonsPanel, createGbc(0, 6));
     }
 
+    /**
+     * Error-checks layout information and creates new file for new layout if information is valid and file path does not already exist.
+     */
     private void createNewLayout() {
         boolean dataIsValid = true;
         String[] layoutInfo = new String[7];
@@ -202,7 +213,7 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
                 //Write new file
                 File newLayout = new File(userPath);
 
-                if(!newLayout.createNewFile()) { //IMPORTANT: NEW FILE PATHS MUST BE TXT AND SPECIFY EXACT FILE THAT DOES NOT YET EXIST
+                if(!newLayout.createNewFile()) {
                     errorMessage.setText("The file path/layout name specified already exists!");
                 } else {
                     //Write information to file
@@ -222,10 +233,5 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
                 errorMessage.setText("Problem creating file. Please ensure that the directory provided is correct.");
             }
         }
-    }
-
-    private boolean isValidLayout(String[] layoutInfo) {
-        //Layout info as appears in form.
-        return false;
     }
 }

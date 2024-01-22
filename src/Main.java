@@ -1,12 +1,12 @@
 import javax.swing.*;
 
 /**
- *
+ * Main class. Only used for running
  */
 public class Main {
     /**
-     *
-     * @param args
+     * Runs code by creating a new MainMenuWindow object of JSwing EDT
+     * @param args main args
      */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {

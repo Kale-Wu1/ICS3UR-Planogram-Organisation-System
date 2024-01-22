@@ -10,28 +10,69 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
+/**
+ * The panel containing the main menu, including file searching and opening functionality and central redirecting. Used in MainMenuWindow.
+ */
+public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser {
     //Parent Window
     private final MainMenuWindow parentWindow;
 
-    //Organisation Panels
+    /**
+     * The Header panel.
+     */
     JPanel headerPanel;
+
+    /**
+     * The Available layouts panel.
+     */
     JPanel availableLayoutsPanel;
+
+    /**
+     * The Search directory panel.
+     */
     JPanel searchDirectoryPanel;
+
+    /**
+     * The Utility buttons panel.
+     */
     JPanel utilityButtonsPanel;
+
+    /**
+     * The Exit button panel.
+     */
     JPanel exitButtonPanel;
 
-    //Variables
+    /**
+     * The array of valid layout files.
+     */
     File[] fileArr = new File[0];
+
+    /**
+     * The Search directory.
+     */
     String searchDirectory = null;
 
+    /**
+     * The Layout titles list.
+     */
     DefaultListModel<String> layoutTitlesList;
 
-    //Global Fields
+    /**
+     * The Search results label.
+     */
     JLabel searchResultsLabel;
 
+
+    /**
+     * Instantiates a new MainMenuPanel.
+     *
+     * @param parentWindow_ the parent window
+     */
     public MainMenuPanel(MainMenuWindow parentWindow_) {
+        //Instantiate parentWindow
         parentWindow = parentWindow_;
+
+        //Set layout
         setLayout(new GridBagLayout());
 
         //Add Header
@@ -43,22 +84,20 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
 
         headerPanel.add(mainMenuHeader);
 
+
         //Add Available Layouts Results
         availableLayoutsPanel = new JPanel(new GridBagLayout()); //Create New Panel
         JLabel availLayoutMessage = new JLabel("Current Layouts: "); //Add Subheading
         availableLayoutsPanel.add(availLayoutMessage, createGbc(0, 0));
 
-        //Available Layout Search Results List w/ Scroll
-        //JList<String> availLayouts = getUpdatedSearchResults();
-
-
+        //Available layouts list
         layoutTitlesList = new DefaultListModel<>(); //Create DefaultListModel for layout titles
         JList<String> availLayouts = new JList<>(layoutTitlesList); //Create JList to contain layoutTitlesList
         JScrollPane availLayoutOptionsScroll = new JScrollPane(availLayouts); //Create JScrollPane to contain availLayouts
         availLayouts.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!e.getValueIsAdjusting()) {
+                if (!e.getValueIsAdjusting()) {
                     //TODO: Open Layout When one is selected
                     /*
                     Open LayoutViewer with a file directory as a parameter
@@ -91,13 +130,14 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
             }
         });
 
+        //Search results message label - used in case no new results are found.
         searchResultsLabel = new JLabel();
 
+        //Add all elements to searchDirectoryPanel
         searchDirectoryPanel.add(searchLabel, createGbc(0, 0));
         searchDirectoryPanel.add(searchTextField, createGbc(1, 0));
         searchDirectoryPanel.add(searchButton, createGbc(2, 0));
         searchDirectoryPanel.add(searchResultsLabel, createGbc(0, 1));
-
 
         //Add Utility Buttons
         utilityButtonsPanel = new JPanel(new GridBagLayout());
@@ -142,15 +182,19 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     }
 
 
-    //Method searchFile searches a directory for valid layout files and returns all files that match using linear search
+    /**
+     * Searches a directory for valid layout files and returns all files that match using linear search.
+     * @param directory filepath to search for files
+     * @return a File[] with valid files.
+     */
     private File[] searchFiles(String directory) {
-        //Mike Samuel - https://stackoverflow.com/questions/4917326/how-to-iterate-over-the-files-of-a-certain-directory-in-java
+        //File searching code edited from Mike Samuel - https://stackoverflow.com/questions/4917326/how-to-iterate-over-the-files-of-a-certain-directory-in-java
         File dir = new File(directory);
         File[] fileList = dir.listFiles();
         ArrayList<File> tempFileList = new ArrayList<>();
-        if(fileList != null) {
-            for(File element : fileList) {
-                if(element.getAbsoluteFile().toString().endsWith("Layout.txt")) {
+        if (fileList != null) {
+            for (File element : fileList) {
+                if (element.getAbsoluteFile().toString().endsWith("Layout.txt")) {
                     tempFileList.add(element.getAbsoluteFile());
                 }
             }
@@ -164,24 +208,36 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
         return null;
     }
 
-    //Method takes directory and currentLayoutsArr and returns a File[] with updated values
+
+    /**
+     * Returns File[] with updated available results
+     * @param directory the filepath to search for more valid files
+     * @param currentLayoutsArr current File[] of available layouts
+     * @param syncedTitleList the list of layout titles synced to the currentLayoutsArr
+     * @return File[] with added results. Returns currentLayoutsArr with no changes if no new valid layout files are found
+     */
     private File[] updateAvailResults(String directory, File[] currentLayoutsArr, DefaultListModel<String> syncedTitleList) {
+        //Search for new files
         File[] searchResults = searchFiles(directory);
         File[] newArr;
-        if(searchResults == null) {
+
+        //Determine appropriate length of newArr
+        if (searchResults == null) {
             newArr = new File[currentLayoutsArr.length];
         } else {
-            //Find length of newArr
+            //Determine length of newArr based on valid new results
             int newArrLength = currentLayoutsArr.length;
+
+            //Add 1 to newArrLength if a new, unique file is found
             for (File searchResult : searchResults) {
                 boolean isUnique = true;
-                for(File currentLayoutFile : currentLayoutsArr) {
-                    if(currentLayoutFile.equals(searchResult)) {
+                for (File currentLayoutFile : currentLayoutsArr) {
+                    if (currentLayoutFile.equals(searchResult)) {
                         isUnique = false;
                         break;
                     }
                 }
-                if(isUnique) {
+                if (isUnique) {
                     newArrLength++;
                 }
             }
@@ -189,40 +245,42 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
             newArr = new File[newArrLength];
         }
 
-
         //Add currentLayoutsArr items to newArr
-        for(int i = 0; i < currentLayoutsArr.length; i++) {
-            newArr[i] = currentLayoutsArr[i];
-        }
-
+        System.arraycopy(currentLayoutsArr, 0, newArr, 0, currentLayoutsArr.length);
 
         //Add searchResults to newArr;
-        for(int i = currentLayoutsArr.length; i < newArr.length; i++) {
+        for (int i = currentLayoutsArr.length; i < newArr.length; i++) {
+            //Add new file to newArr if it is valid and unique
             boolean fileExists = false;
-            for(File element : currentLayoutsArr) {
-                if(element.equals(searchResults[i-currentLayoutsArr.length])) {
+            for (File element : currentLayoutsArr) {
+                if (element.equals(searchResults[i - currentLayoutsArr.length])) {
                     fileExists = true;
                     break;
                 }
             }
-            if(!fileExists) {
-                newArr[i] = searchResults[i-currentLayoutsArr.length];
+            if (!fileExists) {
+                newArr[i] = searchResults[i - currentLayoutsArr.length];
             }
         }
 
+        //Ensure syncedTitleList is synchronised with newArr
         syncedTitleList.clear();
-        for(String title:getTitles(newArr)) {
+        for (String title : getTitles(newArr)) {
             syncedTitleList.addElement(title);
         }
 
         return newArr;
     }
 
-    //Method takes File[] fileArr and returns a String[] with titles only
+    /**
+     * Retrieve titles from File[].
+     * @param fileArr File[] from which to retrieve titles
+     * @return String[] with titles only
+     */
     private String[] getTitles(File[] fileArr) {
         //TODO: Get first line from File object
         String[] titles = new String[fileArr.length];
-        for(int i = 0; i < titles.length; i++) {
+        for (int i = 0; i < titles.length; i++) {
             try {
                 FileReader fr = new FileReader(fileArr[i]);
                 BufferedReader br = new BufferedReader(fr);

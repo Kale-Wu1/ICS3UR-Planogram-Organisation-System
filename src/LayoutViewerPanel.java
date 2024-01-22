@@ -3,18 +3,38 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+/**
+ * The panel where shelves are displayed which contains mouse interaction functionality. Used in LayoutViewerWindow.
+ */
 public class LayoutViewerPanel extends JPanel {
+    /**
+     * The Parent window.
+     */
     LayoutViewerWindow parentWindow;
+
+    /**
+     * The Shelf arr.
+     */
     ArrayList<Shelf> shelfArr;
+
+    /**
+     * The Selected shelf.
+     */
     Shelf selectedShelf;
 
+    /**
+     * Instantiates a new Layout viewer panel.
+     * @param parentWindow_ the parent window
+     * @param shelfArr_     the shelf arr
+     */
     public LayoutViewerPanel(LayoutViewerWindow parentWindow_, ArrayList<Shelf> shelfArr_) {
+        //Instantiate parentWindow, shelfArr, and selectedShelf
         parentWindow = parentWindow_;
         shelfArr = shelfArr_;
         selectedShelf = null;
 
+        //define mouse listener behavior
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -50,16 +70,22 @@ public class LayoutViewerPanel extends JPanel {
         });
 
         repaint();
-
     }
 
+    /**
+     * Overridden paint method.
+     * @param g the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         drawShelves(g);
     }
 
-    //Draw all shelves in shelf array
+    /**
+     * Draw shelves from layout onto panel
+     * @param g the <code>Graphics</code> context in which to paint
+     */
     private void drawShelves(Graphics g) {
         shelfArr = parentWindow.getStorageLayout().getShelfList();
         for(Shelf shelf : shelfArr) {
@@ -76,6 +102,12 @@ public class LayoutViewerPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Shelf click detection.
+     * @param xClicked the x coordinate of the mouse click
+     * @param yClicked the y coordinate of the mouse click
+     * @return the shelf that intersects the coordinates xClicked, yClicked if exists. If no shelf intersects the point, return null
+     */
     private Shelf checkShelfClicked(int xClicked, int yClicked) {
         for(Shelf shelf : shelfArr) {
             if(shelf.isClicked(xClicked, yClicked)) {
@@ -85,12 +117,19 @@ public class LayoutViewerPanel extends JPanel {
         return null;
     }
 
+    /**
+     * Opens LayoutItemViewerToolsPanel of selectedShelf
+     * @param selectedShelf selected shelf to display items for
+     */
     private void openItemViewer(Shelf selectedShelf) {
         parentWindow.getItemViewMenu().setSelectedShelf(selectedShelf);
         parentWindow.setCard(4);
 
     }
 
+    /**
+     * Clear highlighted shelves.
+     */
     public void clearHighlightedShelves() {
         for(Shelf shelf : parentWindow.getStorageLayout().getShelfList()) {
             shelf.setHighlighted(false);
@@ -99,6 +138,12 @@ public class LayoutViewerPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Draws appropriate text to shelf rectangle
+     * @param g the <code>Graphics</code> context in which to paint
+     * @param text the text to draw
+     * @param shelf the shelf upon which to draw the text
+     */
     private void drawShelfText(Graphics g, String text, Shelf shelf) {
         // Set font
         g.setFont(g.getFont().deriveFont(12f));
@@ -126,10 +171,7 @@ public class LayoutViewerPanel extends JPanel {
             }
 
             stringXPos = shelf.getXPos();
-
         }
-
-
 
         // Draw text
         g.setColor(Color.BLACK);

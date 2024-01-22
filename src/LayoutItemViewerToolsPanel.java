@@ -1,19 +1,37 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+
+/**
+ * The panel containing shelf item viewing/editing. Used in LayoutViewerWindow.
+ */
 public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrganiser{
+    /**
+     * The Selected shelf.
+     */
     Shelf selectedShelf;
+
+    /**
+     * The Parent window.
+     */
     LayoutViewerWindow parentWindow;
+
+    /**
+     * The Item panel.
+     */
     JPanel itemPanel;
 
+    /**
+     * Instantiates a new Layout item viewer tools panel.
+     *
+     * @param parentWindow_  the parent window
+     * @param selectedShelf_ the selected shelf
+     */
     public LayoutItemViewerToolsPanel(LayoutViewerWindow parentWindow_, Shelf selectedShelf_) {
-
+        //Instantiate parentWindow and selected shelf
         selectedShelf = selectedShelf_;
         parentWindow = parentWindow_;
 
@@ -22,14 +40,15 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
             selectedShelf = new Shelf();
         }
 
+        //Set panel layout
         setLayout(new GridBagLayout());
 
-        //Header
+        //Define header panel
         JPanel headerPanel = new JPanel(new GridBagLayout());
         JLabel header = new JLabel(selectedShelf.getName() + " Items");
         headerPanel.add(header, createGbc(0, 0));
 
-        //Item List
+        //Define item list panel
         JPanel itemListPanel = new JPanel(new GridBagLayout());
 
         itemPanel = new JPanel();
@@ -41,7 +60,7 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
 
         itemListPanel.add(itemPanelScroll, createGbc(0, 0));
 
-        //Refresh Button
+        //Define refresh button panel
         JPanel refreshPanel = new JPanel(new GridBagLayout());
         JButton refreshButton = new JButton("Refresh");
         refreshButton.addActionListener(new ActionListener() {
@@ -52,36 +71,50 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
         });
         refreshPanel.add(refreshButton, createGbc(1, 0));
 
-
         //Add panels
         add(headerPanel, createGbc(0, 0));
         add(itemListPanel, createGbc(0, 1));
         add(refreshPanel, createGbc(0, 2));
     }
 
+    /**
+     * Populates itemPanel with information
+     * @param itemPanel item panel to populate
+     * @param items String[] of items to populate the itemPanel with
+     */
     private void itemPanelPopulate(JPanel itemPanel, String[] items) {
-        itemPanel.removeAll(); //remove all items from panel
+        //Remove all items from itemPanel
+        itemPanel.removeAll();
         insertionSort(items);
+
+        //Add items text field
         for (String item : items) {
             JTextField newTextField = new JTextField(item);
             newTextField.setMaximumSize(new Dimension(Integer.MAX_VALUE, newTextField.getPreferredSize().height));
             itemPanel.add(newTextField);
         }
+
+        //Add blank text field
         JTextField newTextField = new JTextField();
         newTextField.setMaximumSize(new Dimension(Integer.MAX_VALUE, newTextField.getPreferredSize().height));
         itemPanel.add(newTextField);
     }
 
+    /**
+     * Refresh item list
+     */
     private void refreshItemList() {
-        String[] items = readCurrentItems(itemPanel); //read items
-        insertionSort(items); //sort items
-
-        itemPanelPopulate(itemPanel, items); //populate with new info
+        //Repopulate itemPanel with new information
+        itemPanelPopulate(itemPanel, readCurrentItems(itemPanel));
         itemPanel.revalidate();
         itemPanel.repaint();
-
     }
 
+    /**
+     * Read current items in itemPanel.
+     * @param itemPanel the panel to read items from
+     * @return a String[] of items in current itemPanel
+     */
     private String[] readCurrentItems(JPanel itemPanel) {
         Component[] textFields = itemPanel.getComponents();
         ArrayList<String> itemList = new ArrayList<>();
@@ -103,25 +136,35 @@ public class LayoutItemViewerToolsPanel extends JPanel implements GBCLayoutOrgan
         return itemArr;
     }
 
-
-    private static void insertionSort(String[] arr) {
-        int n = arr.length;
+    /**
+     * Sorts itemArr alphabetically using insertionSort.
+     * @param itemArr the array of items to sort
+     */
+    private static void insertionSort(String[] itemArr) {
+        int n = itemArr.length;
         for (int i = 1; i < n; ++i) {
-            String key = arr[i];
+            String key = itemArr[i];
             int j;
 
-            for (j = i - 1; j >= 0 && arr[j].compareTo(key) > 0; --j) {
-                arr[j + 1] = arr[j];
+            for (j = i - 1; j >= 0 && itemArr[j].compareTo(key) > 0; --j) {
+                itemArr[j + 1] = itemArr[j];
             }
-            arr[j + 1] = key;
+            itemArr[j + 1] = key;
         }
     }
 
+    /**
+     * Sets selected shelf.
+     * @param selectedShelf_ the selected shelf
+     */
     public void setSelectedShelf(Shelf selectedShelf_) {
         selectedShelf = selectedShelf_;
         itemPanelPopulate(itemPanel, selectedShelf.getItemArr());
     }
 
+    /**
+     * Save shelf items to selectedShelf.
+     */
     public void saveShelfItems() {
         selectedShelf.setItemArr(readCurrentItems(itemPanel));
     }

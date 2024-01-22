@@ -3,9 +3,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The panel containing instructions for the program. Used in MainMenuWindow.
+ */
 public class InstructionsPanel extends JPanel implements GBCLayoutOrganiser{
     private final MainMenuWindow parentWindow;
 
+
+    /**
+     * Instantiates a new Instructions panel.
+     *
+     * @param parentWindow_ the parent window
+     */
     public InstructionsPanel(MainMenuWindow parentWindow_) {
         parentWindow = parentWindow_;
         //Set layout manager for this panel
