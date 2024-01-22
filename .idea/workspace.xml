@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Completed code documentation">
+    <list default="true" id="78e41992-53e9-4a29-8088-784ef96f7d2c" name="Changes" comment="Minor LayoutViewer ratio changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LayoutViewerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LayoutViewerWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705892102720</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Minor LayoutViewer ratio changes">
+      <option name="closed" value="true" />
+      <created>1705894891119</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1705894891119</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,6 +319,7 @@
     <MESSAGE value="Added text boundaries for text in shelves." />
     <MESSAGE value="Completed Code w/o documentation" />
     <MESSAGE value="Completed code documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed code documentation" />
+    <MESSAGE value="Minor LayoutViewer ratio changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor LayoutViewer ratio changes" />
   </component>
 </project>

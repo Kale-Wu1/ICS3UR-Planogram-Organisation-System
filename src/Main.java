@@ -2,6 +2,10 @@ import javax.swing.*;
 
 /**
  * Main class. Only used for running
+ * Mrs. Oliveira
+ * ICS3UR
+ * @author KaleWu
+ * Jan. 21st, 2024
  */
 public class Main {
     /**
