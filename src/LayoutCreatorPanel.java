@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 
 public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,FileUtils{
     //Parent Window
-    private final Main parentWindow;
+    private final MainMenuWindow parentWindow;
     private String selectedUnit;
 
     //Information Fields
@@ -23,7 +23,7 @@ public class LayoutCreatorPanel extends JPanel implements GBCLayoutOrganiser,Fil
     private final String[] unitOptions;
     private final JLabel errorMessage;
 
-    public LayoutCreatorPanel(Main parentWindow_) {
+    public LayoutCreatorPanel(MainMenuWindow parentWindow_) {
         parentWindow = parentWindow_;
         setLayout(new GridBagLayout());
 

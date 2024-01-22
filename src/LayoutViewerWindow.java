@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class LayoutViewerWindow extends JFrame {
 
-    //Define Main Divisions
+    //Define MainMenuWindow Divisions
     private final LayoutViewerPanel parentViewPanel;
     private final JPanel parentToolMenuPanel;
 
@@ -19,14 +19,6 @@ public class LayoutViewerWindow extends JFrame {
 
     //Current Menu
     private int currentCard;
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LayoutViewerWindow(new Layout("C:\\Users\\kalew\\Downloads\\testLayouts\\MyLayoutLayout.txt"));
-            }
-        });
-    }
 
     public LayoutViewerWindow(Layout layout_) {
         layout = layout_;

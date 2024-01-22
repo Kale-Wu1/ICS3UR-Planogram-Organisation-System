@@ -9,11 +9,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     //Parent Window
-    private final Main parentWindow;
+    private final MainMenuWindow parentWindow;
 
     //Organisation Panels
     JPanel headerPanel;
@@ -31,7 +30,7 @@ public class MainMenuPanel extends JPanel implements GBCLayoutOrganiser{
     //Global Fields
     JLabel searchResultsLabel;
 
-    public MainMenuPanel(Main parentWindow_) {
+    public MainMenuPanel(MainMenuWindow parentWindow_) {
         parentWindow = parentWindow_;
         setLayout(new GridBagLayout());
 

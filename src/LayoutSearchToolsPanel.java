@@ -4,8 +4,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser{
     LayoutViewerWindow parentWindow;
@@ -105,7 +103,7 @@ public class LayoutSearchToolsPanel extends JPanel implements GBCLayoutOrganiser
             @Override
             public void actionPerformed(ActionEvent e) {
                 saveAll();
-                new Main();
+                new MainMenuWindow();
                 parentWindow.dispose();
             }
         });
